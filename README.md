@@ -1,12 +1,4 @@
-# A Coexistence Criterion for Computation in Driven Disordered Optical Cavities
-
-A short technical note on a single, well-posed problem in the physics of driven, open, nonlinear wave systems: under what conditions does a disordered optical cavity stop being a high-dimensional *linear* map and become a substrate that actually *computes*.
-
-The note is self-contained, math-forward, and released to the public domain.
-
-## The problem, in one paragraph
-
-A passive optical cavity filled with linear media implements a linear input–output map, however elaborate its engineered disorder. Such a map can be of arbitrarily high rank and still computes no nonlinear function of its input history — high dimensionality is necessary but nowhere near sufficient. Whether a driven, open, disordered cavity becomes a genuine computational substrate is therefore a question about three *coupled* physical observables — dimensionality, fading memory, and a nonlinearity internal to the field evolution — that all enter through the same complex spectrum of quasinormal modes.
+pengineered disorder. Such a map can be of arbitrarily high rank and still computes no nonlinear function of its input history — high dimensionality is necessary but nowhere near sufficient. Whether a driven, open, disordered cavity becomes a genuine computational substrate is therefore a question about three *coupled* physical observables — dimensionality, fading memory, and a nonlinearity internal to the field evolution — that all enter through the same complex spectrum of quasinormal modes.
 
 ## The criterion
 
