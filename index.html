@@ -360,11 +360,12 @@ footer{
       \[ h_{2}(\tau_1,\tau_2)\neq0,\qquad \operatorname{supp} h_2 \sim \tau_{\text{photon}}. \]
     </div>
     <p>This collapses three fuzzy properties into one measurable quantity: drive the system with impulses and impulse pairs and read off whether \(h_2\) survives over the memory window.</p>
+    <p>A nonvanishing \(h_2\) is a <strong>necessary</strong> criterion, not a sufficient one. A substrate can be nonlinear and still compute poorly if its memory capacity or readout conditioning is weak; the <strong>sufficient</strong> figure of merit is task-level — memory capacity, or accuracy on a benchmark that demands nonlinear memory (NARMA, parity-\(N\)) measured against a linear-readout control.</p>
   </section>
 
   <section>
     <div class="shead"><span class="snum">§ 5</span><h2>The coexistence problem</h2></div>
-    <p class="lead">The difficulty is that the three observables are not independent — disorder, loss, and the nonlinearity all enter through the same complex spectrum \(\{\omega_m-i\gamma_m\}\) and the same susceptibility. Disorder raises \(r_{\text{eff}}\) but adds radiative loss, which shortens memory and drives \(\delta\) past unity; a nonlinearity strong enough to make \(h_2\neq0\) — gain saturation near threshold, say — tends to induce mode competition that collapses the field onto a few modes and sends \(r_{\text{eff}}\to1\). The open question is whether a single operating point satisfies all of the following at once:</p>
+    <p class="lead">By <em class="t">coexistence</em> we mean the simultaneous satisfaction of the conditions below — not phase or modal coexistence, nor bistability. The difficulty is that the observables are not independent — disorder, loss, and the nonlinearity all enter through the same complex spectrum \(\{\omega_m-i\gamma_m\}\) and the same susceptibility. Disorder raises \(r_{\text{eff}}\) but adds radiative loss, which shortens memory and drives \(\delta\) past unity; a nonlinearity strong enough to make \(h_2\neq0\) — gain saturation near threshold, say — tends to induce mode competition that collapses the field onto a few modes and sends \(r_{\text{eff}}\to1\). The same non-Hermiticity exerts one further pull: the cavity's modes are non-orthogonal, and that non-orthogonality amplifies quantum-limited noise by the Petermann factor \(K\), which diverges near the exceptional points that strong mixing drives toward — so the high-\(r_{\text{eff}}\) regime is intrinsically the high-noise regime. The open question is whether a single operating point satisfies all of the following at once:</p>
     <div class="criterion">
       <div class="ctitle">Simultaneous conditions — does such a regime exist?</div>
       <div class="cbody">
@@ -373,6 +374,7 @@ footer{
           <li><span class="cap">Dimensionality</span>\(r_{\text{eff}}=\mathcal O(N_{\text{modes}})\).</li>
           <li><span class="cap">Memory matched to drive</span>spread\(\{\gamma_m\}\) comparable to the symbol rate.</li>
           <li><span class="cap">Modal individuality</span>\(\delta=\bar\gamma/\Delta\omega=\mathcal O(1)\).</li>
+          <li><span class="cap">Readout above the excess-noise floor</span>per-mode SNR degraded by \(\sqrt{K}\) (Petermann factor), worst exactly where mode mixing is strongest.</li>
         </ul>
       </div>
     </div>
