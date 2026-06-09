@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="color-scheme" content="light dark" />
+<title>A Coexistence Criterion for Computation in Driven Disordered Optical Cavities</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+  svg: { fontCache: 'global' },
+  options: { renderActions: { addMenu: [] } }
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js" async></script>
+
+<style>
+:root{
+  color-scheme:light dark;
+  --paper:#f5f7f8;
+  --panel:#eceff1;
+  --ink:#15191d;
+  --dim:#5d666d;
+  --faint:#9aa2a8;
+  --rule:#d4dadd;
+  --blue:#1f5d78;
+  --blue-soft:rgba(31,93,120,0.07);
+  --rust:#9e3b2c;
+  --eq-bg:#fbfcfc;
+  --eq-key-bg:#fdfafa;
+  --on-blue:#ffffff;
+  --ink-soft:#252b30;
+}
+/* manual override: forced dark even on a light device */
+:root[data-theme="dark"]{
+  --paper:#0f1316;
+  --panel:#171c20;
+  --ink:#e7edf0;
+  --dim:#9aa4ab;
+  --faint:#626d74;
+  --rule:#293036;
+  --blue:#5fb6d4;
+  --blue-soft:rgba(95,182,212,0.10);
+  --rust:#dc7a64;
+  --eq-bg:#141a1e;
+  --eq-key-bg:#1b1715;
+  --on-blue:#0f1316;
+  --ink-soft:#cdd5da;
+}
+/* automatic: follow the device unless the reader forced light */
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#0f1316;
+    --panel:#171c20;
+    --ink:#e7edf0;
+    --dim:#9aa4ab;
+    --faint:#626d74;
+    --rule:#293036;
+    --blue:#5fb6d4;
+    --blue-soft:rgba(95,182,212,0.10);
+    --rust:#dc7a64;
+    --eq-bg:#141a1e;
+    --eq-key-bg:#1b1715;
+    --on-blue:#0f1316;
+    --ink-soft:#cdd5da;
+  }
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{ -webkit-text-size-adjust:100%; }
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"IBM Plex Serif",Georgia,serif;
+  line-height:1.7;
+  font-size:16px;
+}
+
+.wrap{
+  max-width:760px;
+  margin:0 auto;
+  padding:3.2rem 1.6rem 4.5rem;
+}
+
+/* ── masthead ── */
+.eyebrow{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:0.66rem;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:var(--blue);
+  margin-bottom:1rem;
+}
+h1{
+  font-family:"IBM Plex Sans",sans-serif;
+  font-weight:600;
+  font-size:clamp(1.5rem,4.2vw,2.05rem);
+  line-height:1.22;
+  letter-spacing:-0.012em;
+  color:var(--ink);
+  max-width:30ch;
+}
+.subtitle{
+  font-family:"IBM Plex Serif",serif;
+  font-style:italic;
+  color:var(--dim);
+  font-size:1rem;
+  margin-top:0.7rem;
+  max-width:54ch;
+}
+.meta{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:0.64rem;
+  letter-spacing:0.08em;
+  color:var(--faint);
+  margin-top:1.4rem;
+  padding-top:0.9rem;
+  border-top:1px solid var(--rule);
+  display:flex;
+  flex-wrap:wrap;
+  gap:0.4rem 1.6rem;
+}
+
+/* ── abstract ── */
+.abstract{
+  margin:2.2rem 0 0.5rem;
+  padding:1.1rem 1.3rem;
+  background:var(--panel);
+  border-left:2px solid var(--ink);
+}
+.abstract p{ font-size:0.95rem; color:var(--ink-soft); }
+
+/* ── sections ── */
+section{ margin-top:2.6rem; }
+.shead{
+  display:flex;
+  align-items:baseline;
+  gap:0.8rem;
+  margin-bottom:0.8rem;
+  padding-bottom:0.4rem;
+  border-bottom:1px solid var(--rule);
+}
+.snum{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:0.72rem;
+  color:var(--blue);
+  font-weight:500;
+}
+.shead h2{
+  font-family:"IBM Plex Sans",sans-serif;
+  font-weight:500;
+  font-size:1.04rem;
+  letter-spacing:-0.005em;
+  color:var(--ink);
+}
+p{ margin-bottom:0.9rem; }
+p + p{ margin-top:-0.1rem; }
+.lead{ color:var(--ink-soft); }
+strong{ font-weight:600; color:var(--ink); }
+em.t{ font-style:normal; color:var(--blue); font-weight:500; }
+
+/* ── equation blocks ── */
+.eq{
+  position:relative;
+  margin:1.2rem 0;
+  padding:0.55rem 3.4rem 0.55rem 1.1rem;
+  background:var(--eq-bg);
+  border:1px solid var(--rule);
+  border-left:2px solid var(--blue);
+  overflow-x:auto;
+  overflow-y:hidden;
+}
+.eq.key{ border-left-color:var(--rust); background:var(--eq-key-bg); }
+.eq .tag{
+  position:absolute;
+  top:50%;
+  right:0.85rem;
+  transform:translateY(-50%);
+  font-family:"IBM Plex Mono",monospace;
+  font-size:0.68rem;
+  color:var(--faint);
+}
+.eq.key .tag{ color:var(--rust); }
+mjx-container{ margin:0 !important; }
+
+/* ── criterion block ── */
+.criterion{
+  margin-top:1.3rem;
+  border:1px solid var(--blue);
+  background:var(--blue-soft);
+}
+.criterion .ctitle{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:0.64rem;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  color:var(--on-blue);
+  background:var(--blue);
+  padding:0.4rem 1.1rem;
+}
+.criterion .cbody{ padding:1rem 1.2rem 1.1rem; }
+.criterion ul{ list-style:none; margin:0.4rem 0 0; }
+.criterion li{
+  font-size:0.9rem;
+  padding:0.5rem 0 0.5rem 1.5rem;
+  position:relative;
+  border-top:1px solid rgba(31,93,120,0.18);
+}
+.criterion li:first-child{ border-top:none; }
+.criterion li::before{
+  content:"›";
+  position:absolute;left:0.2rem;top:0.5rem;
+  color:var(--blue);
+  font-family:"IBM Plex Mono",monospace;
+}
+.criterion li .cap{
+  display:block;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:0.62rem;
+  letter-spacing:0.06em;
+  color:var(--dim);
+  text-transform:uppercase;
+  margin-bottom:0.05rem;
+}
+
+/* ── footer ── */
+footer{
+  margin-top:3.2rem;
+  padding-top:1rem;
+  border-top:1px solid var(--ink);
+  font-family:"IBM Plex Mono",monospace;
+  font-size:0.62rem;
+  letter-spacing:0.07em;
+  color:var(--faint);
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:0.5rem;
+}
+
+.theme-toggle{
+  position:fixed;
+  top:0.9rem;right:0.9rem;z-index:20;
+  display:flex;align-items:center;gap:0.45rem;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:0.6rem;letter-spacing:0.12em;
+  padding:0.42rem 0.62rem;
+  color:var(--dim);
+  background:var(--panel);
+  border:1px solid var(--rule);
+  border-radius:2px;
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+}
+.theme-toggle:hover{ color:var(--ink);border-color:var(--blue); }
+.theme-toggle:focus-visible{ outline:2px solid var(--blue);outline-offset:2px; }
+.theme-toggle .dot{ width:7px;height:7px;border-radius:50%;background:var(--blue); }
+
+@media (prefers-reduced-motion:no-preference){
+  .wrap{ animation:rise 0.5s ease both; }
+  @keyframes rise{ from{opacity:0;transform:translateY(8px);} to{opacity:1;transform:none;} }
+}
+@media (max-width:520px){
+  .wrap{ padding:2.4rem 1.1rem 3.5rem; }
+  .eq{ padding:0.5rem 0.9rem; }
+  .eq .tag{ position:static; display:block; transform:none; text-align:right; margin-top:0.3rem; }
+}
+</style>
+</head>
+<body>
+<button class="theme-toggle" id="theme-toggle" type="button" aria-label="Color theme, tap to change">
+  <span class="dot" aria-hidden="true"></span><span id="theme-label">AUTO</span>
+</button>
+<div class="wrap">
+
+  <div class="eyebrow">Technical Note · Non-Hermitian Photonics · Physical Reservoir Computing</div>
+  <h1>A Coexistence Criterion for Computation in Driven Disordered Optical Cavities</h1>
+  <p class="subtitle">Why high modal dimensionality is necessary but not sufficient, and the conditions a substrate must meet simultaneously.</p>
+  <div class="meta">
+    <span>STATUS — PRE-EXPERIMENTAL</span>
+    <span>LICENSE — CC0 / PUBLIC DOMAIN</span>
+    <span>FORM — SHORT NOTE</span>
+  </div>
+
+  <div class="abstract">
+    <p>A passive optical cavity filled with linear media implements a linear input–output map, however elaborate its engineered disorder. Such a map can be of arbitrarily high rank and still computes no nonlinear function of its input history. The conditions under which a driven, open, disordered cavity becomes a genuine computational substrate are therefore conditions on three coupled physical observables — dimensionality, memory, and a nonlinearity internal to the field evolution — that all enter through the same complex spectrum. This note states those conditions and reduces the computation question to a measurable criterion on the Volterra kernels of the input–output map.</p>
+  </div>
+
+  <section>
+    <div class="shead"><span class="snum">§ 1</span><h2>Setup: the open cavity as a non-Hermitian operator</h2></div>
+    <p class="lead">Consider a resonator with a spatially structured permittivity \(\varepsilon(\mathbf r)\) — a plano-hemispherical cavity seeded with subwavelength dielectric scatterers. In the frequency domain the passive field obeys</p>
+    <div class="eq">
+      <span class="tag">(1)</span>
+      \[ \nabla\times\nabla\times\mathbf E(\mathbf r,\omega)-\frac{\omega^{2}}{c^{2}}\,\varepsilon(\mathbf r)\,\mathbf E(\mathbf r,\omega)=\mathbf 0. \]
+    </div>
+    <p>Because the cavity is open — radiative leakage through the curved wall — the relevant operator is <em class="t">non-Hermitian</em>, and its natural modes are quasinormal modes with complex eigenfrequencies</p>
+    <div class="eq">
+      <span class="tag">(2)</span>
+      \[ \tilde\omega_{m}=\omega_{m}-i\,\gamma_{m},\qquad \gamma_{m}>0. \]
+    </div>
+    <p>The real part fixes the spectral position; the imaginary part fixes the linewidth and the photon lifetime. The scatterers break integrability and mix these modes.</p>
+  </section>
+
+  <section>
+    <div class="shead"><span class="snum">§ 2</span><h2>The linearity constraint</h2></div>
+    <p class="lead">For linear media, Eq. (1) is linear in \(\mathbf E\). The map from drive to field is therefore a linear operator \(A(\omega)\),</p>
+    <div class="eq">
+      <span class="tag">(3)</span>
+      \[ \mathbf E_{\text{out}}(\omega)=A(\omega)\,\mathbf E_{\text{in}}(\omega). \]
+    </div>
+    <p>Equivalently, expanding the field in quasinormal modes, \(\mathbf E(\mathbf r,t)=\sum_m a_m(t)\,\boldsymbol\psi_m(\mathbf r)\), the modal amplitudes obey a coupled-mode equation</p>
+    <div class="eq">
+      <span class="tag">(4)</span>
+      \[ \frac{da_{m}}{dt}=(i\omega_{m}-\gamma_{m})\,a_{m}+\sum_{n}\kappa_{mn}\,a_{n}+N_{m}\!\left[\{a\}\right]+s_{m}(t), \]
+    </div>
+    <p>where \(\kappa_{mn}\) is the disorder-induced linear mode coupling, \(s_m\) the projected drive, and \(N_m\) the coupling generated by any field-dependence of \(\varepsilon\). In the passive linear limit \(N_m=0\), and the solution is a convolution,</p>
+    <div class="eq key">
+      <span class="tag">(5)</span>
+      \[ a_{m}(t)=\int_{0}^{\infty}\! G_{m}(t-t')\,s(t')\,dt'. \]
+    </div>
+    <p>This is the constraint in one line: <strong>the internal state is a linear functional of the drive history.</strong> No matter how many modes participate or how complex \(A(\omega)\) is, the state never depends on products of its own past. A high-rank linear map is a random projection, not a dynamical system that computes.</p>
+  </section>
+
+  <section>
+    <div class="shead"><span class="snum">§ 3</span><h2>Three observables</h2></div>
+    <p class="lead"><strong>Dimensionality.</strong> Let \(M\) be the state matrix sampled by the readout, with singular values \(\sigma_i\). The effective dimensionality is the participation ratio of its singular spectrum,</p>
+    <div class="eq">
+      <span class="tag">(6)</span>
+      \[ r_{\text{eff}}=\frac{\left(\sum_i \sigma_i\right)^{2}}{\sum_i \sigma_i^{2}}, \]
+    </div>
+    <p>set by the eigenfunction statistics (participation ratio, IPR) of the mixed mode field — not by the detector count.</p>
+    <p><strong>Memory.</strong> The fading-memory timescale is the decay-rate spectrum measured against the drive period: \(\tau_m=1/\gamma_m\), with the cavity scale \(\tau\simeq \mathcal F L/\pi c\) for finesse \(\mathcal F\). Modal individuality is governed by the modal-overlap (Thouless) parameter</p>
+    <div class="eq">
+      <span class="tag">(7)</span>
+      \[ \delta=\frac{\bar\gamma}{\Delta\omega}, \]
+    </div>
+    <p>with \(\Delta\omega\) the mean level spacing. Resolved modes require \(\delta\lesssim1\); for \(\delta\gg1\) resonances overlap and individuality is lost.</p>
+    <p><strong>Nonlinearity.</strong> A genuine activation enters only through a field-dependent permittivity,</p>
+    <div class="eq">
+      <span class="tag">(8)</span>
+      \[ \varepsilon(\mathbf r)\;\to\;\varepsilon(\mathbf r)+\chi_{\text{eff}}\!\left(\mathbf r,|\mathbf E|^{2}\right), \]
+    </div>
+    <p>for example saturable gain \(\chi_{\text{eff}}=\chi_0\,(1+I/I_{\text{sat}})^{-1}\) or a Kerr shift \(\Delta n=n_2 I\). What matters is not only its magnitude but its response time relative to \(\tau_m\): a nonlinearity slow compared with the photon lifetime acts as a quasi-static background, not a per-symbol activation.</p>
+  </section>
+
+  <section>
+    <div class="shead"><span class="snum">§ 4</span><h2>The decisive criterion</h2></div>
+    <p class="lead">The computation question, free of any reservoir-computing vocabulary, is a statement about the Volterra expansion of the input–output map:</p>
+    <div class="eq">
+      <span class="tag">(9)</span>
+      \[ y(t)=\sum_{k\ge1}\;\int\!\cdots\!\int h_{k}(\tau_1,\dots,\tau_k)\prod_{i=1}^{k}u(t-\tau_i)\,d\tau_i. \]
+    </div>
+    <p>A linear system has only a first-order kernel — \(h_1=G\) and \(h_{k\ge2}\equiv0\). Nonlinearity in the state evolution appears as a <strong>nonvanishing higher-order kernel</strong>, and the physically meaningful requirement is that it be sourced by the intracavity field-dependence rather than by a nonlinear detector, with temporal support set by the photon lifetime:</p>
+    <div class="eq key">
+      <span class="tag">(10)</span>
+      \[ h_{2}(\tau_1,\tau_2)\neq0,\qquad \operatorname{supp} h_2 \sim \tau_{\text{photon}}. \]
+    </div>
+    <p>This collapses three fuzzy properties into one measurable quantity: drive the system with impulses and impulse pairs and read off whether \(h_2\) survives over the memory window.</p>
+  </section>
+
+  <section>
+    <div class="shead"><span class="snum">§ 5</span><h2>The coexistence problem</h2></div>
+    <p class="lead">The difficulty is that the three observables are not independent — disorder, loss, and the nonlinearity all enter through the same complex spectrum \(\{\omega_m-i\gamma_m\}\) and the same susceptibility. Disorder raises \(r_{\text{eff}}\) but adds radiative loss, which shortens memory and drives \(\delta\) past unity; a nonlinearity strong enough to make \(h_2\neq0\) — gain saturation near threshold, say — tends to induce mode competition that collapses the field onto a few modes and sends \(r_{\text{eff}}\to1\). The open question is whether a single operating point satisfies all of the following at once:</p>
+    <div class="criterion">
+      <div class="ctitle">Simultaneous conditions — does such a regime exist?</div>
+      <div class="cbody">
+        <ul>
+          <li><span class="cap">Nonlinearity in the recurrence</span>\(h_2\neq0\), intracavity-sourced, with \(\operatorname{supp}h_2\sim\tau_{\text{photon}}\).</li>
+          <li><span class="cap">Dimensionality</span>\(r_{\text{eff}}=\mathcal O(N_{\text{modes}})\).</li>
+          <li><span class="cap">Memory matched to drive</span>spread\(\{\gamma_m\}\) comparable to the symbol rate.</li>
+          <li><span class="cap">Modal individuality</span>\(\delta=\bar\gamma/\Delta\omega=\mathcal O(1)\).</li>
+        </ul>
+      </div>
+    </div>
+    <p style="margin-top:1.2rem;">The linear-disorder half — the eigenfunction statistics and decay spectrum — is well-trodden open-wave-chaos physics. The unsettled half is the multimode nonlinear regime: whether a field-dependence strong enough to register in \(h_2\) on the photon-lifetime timescale can coexist with high modal participation, or whether it generically destroys it. Whether the favorable region is nonempty is the whole problem.</p>
+  </section>
+
+  <footer>
+    <span>NON-HERMITIAN · DISORDER · NONLINEAR DYNAMICS</span>
+    <span>CC0 — NO RIGHTS RESERVED</span>
+  </footer>
+
+</div>
+<script>
+(function(){
+  var root=document.documentElement;
+  var btn=document.getElementById('theme-toggle');
+  var label=document.getElementById('theme-label');
+  var modes=['auto','light','dark'];
+  var i=0;
+  function apply(){
+    var m=modes[i];
+    if(m==='auto'){ root.removeAttribute('data-theme'); }
+    else{ root.setAttribute('data-theme',m); }
+    label.textContent=m.toUpperCase();
+  }
+  btn.addEventListener('click',function(){ i=(i+1)%modes.length; apply(); });
+  apply();
+})();
+</script>
+</body>
+</html>
