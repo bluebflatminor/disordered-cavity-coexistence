@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="color-scheme" content="light dark" />
-<title>A Coexistence Criterion for Computation in Driven Disordered Optical Cavities (rev. 2, work in progress)</title>
+<title>A Coexistence Criterion for Computation in Driven Disordered Optical Cavities (rev. 2.1, work in progress)</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -360,13 +360,13 @@ footer{
   <p class="subtitle">Why high modal dimensionality is necessary but not sufficient, and the conditions a substrate must meet simultaneously.</p>
   <div class="meta">
     <span>STATUS — PRE-EXPERIMENTAL, WORK IN PROGRESS</span>
-    <span>REVISION 2 — 2026-10-04</span>
+    <span>REVISION 2.1 — 2026-10-04</span>
     <span>LICENSE — CC0 / PUBLIC DOMAIN</span>
     <span>FORM — SHORT NOTE</span>
   </div>
 
   <div class="wip" role="note">
-    <strong>Work in progress.</strong> This note records a developing argument, not a finished result. Revision 2 narrows the scope of the linearity constraint, adds a sixth coexistence condition, and revises the noise condition in light of recent literature. Sections changed in this revision are marked, and unresolved points are collected in §7. No experiment has been run.
+    <strong>Work in progress.</strong> This note records a developing argument, not a finished result. Revision 2 narrowed the scope of the linearity constraint, added a sixth coexistence condition, and revised the noise condition in light of recent literature. Revision 2.1 generalizes the kernel criterion beyond second order and tightens one overstated sentence after external review. Sections changed are marked, and unresolved points are collected in §7. No experiment has been run.
   </div>
 
   <div class="abstract">
@@ -390,7 +390,7 @@ footer{
   </section>
 
   <section>
-    <div class="shead"><span class="snum">§ 2</span><h2>The linearity constraint and its scope</h2><span class="rev">revised in rev. 2</span></div>
+    <div class="shead"><span class="snum">§ 2</span><h2>The linearity constraint and its scope</h2><span class="rev">revised in rev. 2.1</span></div>
     <p class="lead">For linear media, Eq. (1) is linear in \(\mathbf E\). The map from drive to field is therefore a linear operator \(A(\omega)\),</p>
     <div class="eq">
       <span class="tag">(3)</span>
@@ -406,7 +406,7 @@ footer{
       <span class="tag">(5)</span>
       \[ a_{m}(t)=\int_{0}^{\infty}\! G_{m}(t-t')\,s(t')\,dt'. \]
     </div>
-    <p>This is the constraint in one line: <strong>when the data enter only through the drive \(s_m(t)\), the internal state is a linear functional of the drive history.</strong> No matter how many modes participate or how complex \(A(\omega)\) is, the state never depends on products of its own past. A high-rank linear map is a random projection, not a dynamical system that computes.</p>
+    <p>This is the constraint in one line: <strong>when the data enter only through the drive \(s_m(t)\), the internal state is a linear functional of the drive history.</strong> No matter how many modes participate or how complex \(A(\omega)\) is, the state never depends on products of its own past. A high-rank linear map can perform useful linear transformations — as a feature projection or a memory substrate — but it cannot realize nonlinear, state-dependent transformations of its input history.</p>
 
     <div class="note">
       <span class="nt">Scope: the constraint is a statement about the input port</span>
@@ -449,24 +449,32 @@ footer{
   </section>
 
   <section>
-    <div class="shead"><span class="snum">§ 4</span><h2>The decisive criterion</h2><span class="rev">revised in rev. 2</span></div>
+    <div class="shead"><span class="snum">§ 4</span><h2>The decisive criterion</h2><span class="rev">revised in rev. 2.1</span></div>
     <p class="lead">The computation question, free of any reservoir-computing vocabulary, is a statement about the Volterra expansion of the input–output map:</p>
     <div class="eq">
       <span class="tag">(9)</span>
       \[ y(t)=\sum_{k\ge1}\;\int\!\cdots\!\int h_{k}(\tau_1,\dots,\tau_k)\prod_{i=1}^{k}u(t-\tau_i)\,d\tau_i. \]
     </div>
-    <p>A linear system has only a first-order kernel — \(h_1=G\) and \(h_{k\ge2}\equiv0\). Nonlinearity in the state evolution appears as a <strong>nonvanishing higher-order kernel</strong>, and the physically meaningful requirement is that it be sourced inside the cavity rather than by a nonlinear detector, with temporal support set by the photon lifetime:</p>
+    <p>A linear system has only a first-order kernel — \(h_1=G\) and \(h_{k\ge2}\equiv0\). Nonlinearity in the state evolution appears as a <strong>nonvanishing higher-order kernel</strong>, and the physically meaningful requirement is that it be sourced inside the cavity rather than by a nonlinear detector, with temporal support set by the photon lifetime. Let \(k^{*}\) be the lowest order above one whose kernel does not vanish:</p>
     <div class="eq key">
       <span class="tag">(10)</span>
-      \[ h_{2}(\tau_1,\tau_2)\neq0,\qquad \operatorname{supp} h_2 \sim \tau_{\text{photon}}. \]
+      \[ \exists\,k\ge2:\;h_{k}\neq0;\qquad k^{*}=\min\{k\ge2: h_k\neq0\},\qquad \operatorname{supp} h_{k^{*}} \sim \tau_{\text{photon}}. \]
     </div>
-    <p>This collapses several fuzzy properties into one measurable quantity: drive the system with impulses and impulse pairs and read off whether \(h_2\) survives over the memory window.</p>
+    <p>This collapses several fuzzy properties into one measurable quantity. In most cases \(k^{*}=2\): drive the system with impulses and impulse pairs and read off whether \(h_2\) survives over the memory window.</p>
+    <div class="note">
+      <span class="nt">Why the criterion is not \(h_2\) alone (new in rev. 2.1)</span>
+      <p>Revision 2 stated the criterion as \(h_2\neq0\). That excludes genuinely nonlinear systems in which symmetry forbids the second-order term. If the map is odd in the input, so that \(u\to-u\) sends \(y\to-y\), every even-order kernel vanishes. A Kerr (\(\chi^{(3)}\)) cavity with coherent field encoding and phase-sensitive readout is such a case: \(h_2=0\) while \(h_3\neq0\). The criterion is therefore the lowest nonvanishing kernel of order two or higher. \(h_2\) remains the default probe because it is the cheapest to measure; when an odd symmetry is present, impulse triples are needed to resolve \(h_3\).</p>
+    </div>
+    <div class="note">
+      <span class="nt">Why detector nonlinearity is not enough (new in rev. 2.1)</span>
+      <p>A linear scattering system read out by an intensity detector has only second-order nonlinearity, so it cannot approximate parity functions above order two.<sup class="c"><a href="#r2">2</a></sup> Detector nonlinearity therefore puts a hard ceiling on achievable order and adds no state-dependent recurrence. Nonlinearity inside the cavity, by either route, is not bounded this way. This is the main reason the criterion asks where the kernel is sourced.</p>
+    </div>
     <div class="note">
       <span class="nt">The input port must be declared</span>
-      <p>Eq. (9) is incomplete until it states where \(u\) enters. With source-port encoding, \(h_2\neq0\) certifies route (a). With parameter-port encoding, multiple scattering alone generates \(h_2\neq0\), sourced inside the cavity with no \(\chi^{(3)}\). Either route satisfies (10) only if \(\operatorname{supp}h_2\sim\tau_{\text{photon}}\); for route (b) that requires modulation on the photon-lifetime timescale. Among the structural-nonlinearity demonstrations read for this revision, the maps are static or carry memory electronically: the one time-series forecasting result uses a digital leaky integrator for its reservoir state.<sup class="c"><a href="#r4">4</a></sup> None reviewed so far shows structural \(h_2\) with support on the photon-lifetime scale (see §7, item 1).</p>
+      <p>Eq. (9) is incomplete until it states where \(u\) enters. With source-port encoding, a nonvanishing \(h_{k^{*}}\) certifies route (a). With parameter-port encoding, multiple scattering alone generates one, sourced inside the cavity with no \(\chi^{(3)}\). Either route satisfies (10) only if \(\operatorname{supp}h_{k^{*}}\sim\tau_{\text{photon}}\); for route (b) that requires modulation on the photon-lifetime timescale. Among the structural-nonlinearity demonstrations read for this revision, the maps are static or carry memory electronically: the one time-series forecasting result uses a digital leaky integrator for its reservoir state.<sup class="c"><a href="#r4">4</a></sup> None reviewed so far shows a structural higher-order kernel with support on the photon-lifetime scale (see §7, item 1).</p>
     </div>
-    <p>Existing structural-nonlinearity metrics are complementary to \(h_2\): the coefficient of determination of a linear fit and the mean number of interactions \(\langle n\rangle\),<sup class="c"><a href="#r3">3</a></sup> and the order-resolved Boolean coefficient sums \(S_n\) for binary inputs.<sup class="c"><a href="#r2">2</a></sup> None of them is time-resolved, which is what (10) adds.</p>
-    <p>A nonvanishing \(h_2\) is a <strong>necessary</strong> criterion, not a sufficient one. A substrate can be nonlinear and still compute poorly if its memory capacity or readout conditioning is weak; the <strong>sufficient</strong> figure of merit is task-level — memory capacity, or accuracy on a benchmark that demands nonlinear memory (NARMA, parity-\(N\)) measured against a linear-readout control.</p>
+    <p>Existing structural-nonlinearity metrics are complementary to the kernel criterion: the coefficient of determination of a linear fit and the mean number of interactions \(\langle n\rangle\),<sup class="c"><a href="#r3">3</a></sup> and the order-resolved Boolean coefficient sums \(S_n\) for binary inputs.<sup class="c"><a href="#r2">2</a></sup> None of them is time-resolved, which is what (10) adds.</p>
+    <p>A nonvanishing kernel of order \(k^{*}\) is a <strong>necessary</strong> criterion, not a sufficient one: it shows that nonlinearity exists, not that useful computation does. A substrate can be nonlinear and still compute poorly if its memory capacity or readout conditioning is weak; the <strong>sufficient</strong> figure of merit is task-level — memory capacity, or accuracy on a benchmark that demands nonlinear memory (NARMA, parity-\(N\)) measured against a linear-readout control. The standard task-independent measure is the information processing capacity, which decomposes a system's capacity by polynomial degree and delay; its degree-two part is, roughly, a task-level counterpart of \(h_2\).<sup class="c"><a href="#r16">16</a></sup> The same framework reports a general trade-off between the nonlinearity of computation and short-term memory,<sup class="c"><a href="#r16">16</a></sup> which is one face of the coexistence problem below.</p>
   </section>
 
   <section>
@@ -481,7 +489,7 @@ footer{
       <div class="ctitle">Simultaneous conditions — does such a regime exist?</div>
       <div class="cbody">
         <ul>
-          <li><span class="cap">Nonlinearity in the recurrence</span>\(h_2\neq0\), sourced inside the cavity by route (a) or (b), input port declared, with \(\operatorname{supp}h_2\sim\tau_{\text{photon}}\).</li>
+          <li><span class="cap">Nonlinearity in the recurrence</span>lowest nonvanishing kernel \(h_{k^{*}}\), \(k^{*}\ge2\), sourced inside the cavity by route (a) or (b), input port declared, with \(\operatorname{supp}h_{k^{*}}\sim\tau_{\text{photon}}\).</li>
           <li><span class="cap">Dimensionality</span>\(r_{\text{eff}}=\mathcal O(N_{\text{modes}})\).</li>
           <li><span class="cap">Memory matched to drive</span>spread\(\{\gamma_m\}\) (net of any gain) comparable to the symbol rate.</li>
           <li><span class="cap">Modal individuality</span>\(\delta=\bar\gamma/\Delta\omega=\mathcal O(1)\).</li>
@@ -490,7 +498,7 @@ footer{
         </ul>
       </div>
     </div>
-    <p style="margin-top:1.2rem;">The linear-disorder half — the eigenfunction statistics and decay spectrum — is well-trodden open-wave-chaos physics. The unsettled half is the multimode nonlinear regime: whether a nonlinearity strong enough to register in \(h_2\) on the photon-lifetime timescale can coexist with high modal participation and reproducible output. Whether the favorable region is nonempty remains the whole problem, and this revision does not settle it.</p>
+    <p style="margin-top:1.2rem;">The linear-disorder half — the eigenfunction statistics and decay spectrum — is well-trodden open-wave-chaos physics. The unsettled half is the multimode nonlinear regime: whether a nonlinearity strong enough to register in a higher-order kernel on the photon-lifetime timescale can coexist with high modal participation and reproducible output. Whether the favorable region is nonempty remains the whole problem, and this revision does not settle it.</p>
   </section>
 
   <section>
@@ -513,11 +521,12 @@ footer{
   <section>
     <div class="shead"><span class="snum">§ 7</span><h2>Open items</h2><span class="rev">work in progress</span></div>
     <ol class="open">
-      <li><strong>Structural nonlinearity with optical memory.</strong> The one lead that may combine a linear optical microcavity with temporal tasks<sup class="c"><a href="#r5">5</a></sup> has been located and its citation verified, but it has not yet been read. Until it is, the claim in §4 that no reviewed result shows structural \(h_2\) on the photon-lifetime scale stands only for the sources listed here.</li>
+      <li><strong>Structural nonlinearity with optical memory.</strong> The one lead that may combine a linear optical microcavity with temporal tasks<sup class="c"><a href="#r5">5</a></sup> has been located and its citation verified, but it has not yet been read. Until it is, the claim in §4 that no reviewed result shows a structural higher-order kernel on the photon-lifetime scale stands only for the sources listed here.</li>
       <li><strong>Petermann statistics in chaotic open cavities.</strong> Whether the excess-noise factor in a disordered open cavity is better parameterized by modal overlap \(\delta\) than by proximity to exceptional points needs a source. No claim is made here until one is found.</li>
       <li><strong>Confound in the structural reservoir comparison.</strong> Check whether the comparison in ref. 4 isolates the second modulator pass from the diffuser, camera and loss differences between its two arms.</li>
       <li><strong>Transfer from sensing to computation.</strong> The noise argument in §5 rests on sensing results. A direct statement for reservoir readout near a bifurcation is still needed.</li>
       <li><strong>Early-view citation.</strong> Ref. 2 has no volume or issue yet; recheck before any archival version.</li>
+      <li><strong>Comparison with other reservoir classes (new in rev. 2.1).</strong> State explicitly how the criterion classifies extreme learning machines, delay-based reservoirs, and linear reservoirs with nonlinear readout. The detector ceiling in §4 settles the last case; the other two are not yet written out.</li>
     </ol>
   </section>
 
@@ -540,18 +549,20 @@ footer{
       <li id="r13">M. Parto, G. H. Y. Li, R. Sekine, R. M. Gray, L. L. Ledezma, J. Williams, A. Roy and A. Marandi, “High-speed reservoir computing using photonic integrated circuit optical parametric oscillators,” <em>Sci. Adv.</em> <strong>12</strong>(38), eaeb3077 (2026). <a href="https://doi.org/10.1126/sciadv.aeb3077">doi:10.1126/sciadv.aeb3077</a><span class="prov">checked against PMC full text</span></li>
       <li id="r14">Y. Li, Y. Qian, F. Chen, Y. Lian, X. Zou, K. Wang, Z. Wang, J. Wang, X. Wei, C. Li, K. M. Lei, W.-H. Yu, R. Guo, J. Xu, R. P. Martins, Y. Wang and P.-I. Mak, “Parallel reservoir computing exploiting a single MEMS device via blue sideband excitation,” <em>Microsyst. Nanoeng.</em> <strong>12</strong>, 316 (2026). <a href="https://doi.org/10.1038/s41378-026-01427-6">doi:10.1038/s41378-026-01427-6</a><span class="prov">checked against full text</span></li>
       <li id="r15">Y. Nakamura, T. Kubota, Y. Imai, S. Tsunegi, H. Notsu and K. Nakajima, “Ensemble Reservoir Computing for Physical Systems,” <a href="https://arxiv.org/abs/2601.21807">arXiv:2601.21807</a> (2026).<span class="prov">checked against arXiv record by author</span></li>
+      <li id="r16">J. Dambre, D. Verstraeten, B. Schrauwen and S. Massar, “Information Processing Capacity of Dynamical Systems,” <em>Sci. Rep.</em> <strong>2</strong>, 514 (2012). <a href="https://doi.org/10.1038/srep00514">doi:10.1038/srep00514</a><span class="prov">checked against PMC record and DOI resolver</span></li>
     </ol>
   </section>
 
   <section class="revlog">
     <div class="shead"><span class="snum">§ 9</span><h2>Revision log</h2></div>
+    <p><strong>Revision 2.1 (2026-10-04).</strong> Generalized the kernel criterion, Eq. (10), from \(h_2\) to the lowest nonvanishing kernel of order two or higher, with a symmetry caveat. Rewrote the overstated “random projection” sentence in §2. Added the detector-nonlinearity ceiling (ref. 2) and the information processing capacity framework (ref. 16) to §4. Added a comparison with other reservoir classes as an open item. The first two changes respond to an external AI review of revision 2.</p>
     <p><strong>Revision 2 (2026-10-04).</strong> Scoped the linearity constraint to source-port encoding and added the structural route (Eqs. 5a, 8a). Required the input port to be declared in the Volterra criterion. Replaced the claim of generic mode-competition collapse with a weaker statement supported by refs. 7 and 9. Rewrote the noise condition around critical slowing down, with mode non-orthogonality as a secondary penalty. Added consistency as a sixth condition. Added §6 (evidence), §7 (open items) and §8 (references). Raised small type to legible sizes.</p>
     <p><strong>Revision 1.</strong> Original note: five simultaneous conditions, no references.</p>
   </section>
 
   <footer>
     <span>NON-HERMITIAN · DISORDER · NONLINEAR DYNAMICS</span>
-    <span>REV. 2 · WORK IN PROGRESS · CC0</span>
+    <span>REV. 2.1 · WORK IN PROGRESS · CC0</span>
   </footer>
 
 </div>
