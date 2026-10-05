@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="color-scheme" content="light dark" />
-<title>A Coexistence Criterion for Computation in Driven Disordered Optical Cavities</title>
+<title>A Coexistence Criterion for Computation in Driven Disordered Optical Cavities (rev. 2, work in progress)</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -26,44 +26,45 @@ window.MathJax = {
   --panel:#eceff1;
   --ink:#15191d;
   --dim:#5d666d;
-  --faint:#9aa2a8;
+  --faint:#7a838a;
   --rule:#d4dadd;
   --blue:#1f5d78;
   --blue-soft:rgba(31,93,120,0.07);
   --rust:#9e3b2c;
+  --rust-soft:rgba(158,59,44,0.07);
   --eq-bg:#fbfcfc;
   --eq-key-bg:#fdfafa;
   --on-blue:#ffffff;
   --ink-soft:#252b30;
 }
-/* manual override: forced dark even on a light device */
 :root[data-theme="dark"]{
   --paper:#0f1316;
   --panel:#171c20;
   --ink:#e7edf0;
   --dim:#9aa4ab;
-  --faint:#626d74;
+  --faint:#87929a;
   --rule:#293036;
   --blue:#5fb6d4;
   --blue-soft:rgba(95,182,212,0.10);
   --rust:#dc7a64;
+  --rust-soft:rgba(220,122,100,0.10);
   --eq-bg:#141a1e;
   --eq-key-bg:#1b1715;
   --on-blue:#0f1316;
   --ink-soft:#cdd5da;
 }
-/* automatic: follow the device unless the reader forced light */
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
     --paper:#0f1316;
     --panel:#171c20;
     --ink:#e7edf0;
     --dim:#9aa4ab;
-    --faint:#626d74;
+    --faint:#87929a;
     --rule:#293036;
     --blue:#5fb6d4;
     --blue-soft:rgba(95,182,212,0.10);
     --rust:#dc7a64;
+    --rust-soft:rgba(220,122,100,0.10);
     --eq-bg:#141a1e;
     --eq-key-bg:#1b1715;
     --on-blue:#0f1316;
@@ -79,6 +80,8 @@ body{
   line-height:1.7;
   font-size:16px;
 }
+a{ color:var(--blue); text-underline-offset:2px; }
+a:focus-visible{ outline:2px solid var(--blue); outline-offset:2px; }
 
 .wrap{
   max-width:760px;
@@ -86,17 +89,17 @@ body{
   padding:3.2rem 1.6rem 4.5rem;
 }
 
-/* ── masthead ── */
+/* masthead */
 .eyebrow{
-  font-family:"IBM Plex Mono",monospace;
-  font-size:0.66rem;
-  letter-spacing:0.18em;
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:0.72rem;
+  letter-spacing:0.14em;
   text-transform:uppercase;
   color:var(--blue);
   margin-bottom:1rem;
 }
 h1{
-  font-family:"IBM Plex Sans",sans-serif;
+  font-family:"IBM Plex Sans",system-ui,sans-serif;
   font-weight:600;
   font-size:clamp(1.5rem,4.2vw,2.05rem);
   line-height:1.22;
@@ -105,7 +108,6 @@ h1{
   max-width:30ch;
 }
 .subtitle{
-  font-family:"IBM Plex Serif",serif;
   font-style:italic;
   color:var(--dim);
   font-size:1rem;
@@ -113,9 +115,9 @@ h1{
   max-width:54ch;
 }
 .meta{
-  font-family:"IBM Plex Mono",monospace;
-  font-size:0.64rem;
-  letter-spacing:0.08em;
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:0.72rem;
+  letter-spacing:0.06em;
   color:var(--faint);
   margin-top:1.4rem;
   padding-top:0.9rem;
@@ -125,49 +127,72 @@ h1{
   gap:0.4rem 1.6rem;
 }
 
-/* ── abstract ── */
+/* work-in-progress banner */
+.wip{
+  margin-top:1.6rem;
+  padding:0.85rem 1.1rem;
+  border:1px solid var(--rust);
+  background:var(--rust-soft);
+  font-size:1rem;
+  color:var(--ink-soft);
+}
+.wip strong{ color:var(--rust); }
+
+/* abstract */
 .abstract{
-  margin:2.2rem 0 0.5rem;
+  margin:1.8rem 0 0.5rem;
   padding:1.1rem 1.3rem;
   background:var(--panel);
   border-left:2px solid var(--ink);
 }
-.abstract p{ font-size:0.95rem; color:var(--ink-soft); }
+.abstract p{ font-size:1rem; color:var(--ink-soft); }
+.abstract p + p{ margin-top:0.6rem; }
 
-/* ── sections ── */
+/* sections */
 section{ margin-top:2.6rem; }
 .shead{
   display:flex;
   align-items:baseline;
-  gap:0.8rem;
+  flex-wrap:wrap;
+  gap:0.4rem 0.8rem;
   margin-bottom:0.8rem;
   padding-bottom:0.4rem;
   border-bottom:1px solid var(--rule);
 }
 .snum{
-  font-family:"IBM Plex Mono",monospace;
-  font-size:0.72rem;
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:0.78rem;
   color:var(--blue);
   font-weight:500;
 }
 .shead h2{
-  font-family:"IBM Plex Sans",sans-serif;
+  font-family:"IBM Plex Sans",system-ui,sans-serif;
   font-weight:500;
-  font-size:1.04rem;
+  font-size:1.08rem;
   letter-spacing:-0.005em;
   color:var(--ink);
 }
+.rev{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:0.72rem;
+  color:var(--rust);
+  border:1px solid var(--rust);
+  padding:0 0.4rem;
+  border-radius:2px;
+  white-space:nowrap;
+}
 p{ margin-bottom:0.9rem; }
-p + p{ margin-top:-0.1rem; }
 .lead{ color:var(--ink-soft); }
 strong{ font-weight:600; color:var(--ink); }
 em.t{ font-style:normal; color:var(--blue); font-weight:500; }
+sup.c{ font-size:0.75em; line-height:0; }
+sup.c a{ text-decoration:none; }
 
-/* ── equation blocks ── */
+/* equations */
 .eq{
   position:relative;
   margin:1.2rem 0;
-  padding:0.55rem 3.4rem 0.55rem 1.1rem;
+  padding:0.55rem 3.6rem 0.55rem 1.1rem;
   background:var(--eq-bg);
   border:1px solid var(--rule);
   border-left:2px solid var(--blue);
@@ -180,61 +205,114 @@ em.t{ font-style:normal; color:var(--blue); font-weight:500; }
   top:50%;
   right:0.85rem;
   transform:translateY(-50%);
-  font-family:"IBM Plex Mono",monospace;
-  font-size:0.68rem;
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:0.72rem;
   color:var(--faint);
 }
 .eq.key .tag{ color:var(--rust); }
 mjx-container{ margin:0 !important; }
 
-/* ── criterion block ── */
+/* boxed notes */
+.note{
+  margin:1.1rem 0;
+  padding:0.85rem 1.1rem;
+  border-left:2px solid var(--blue);
+  background:var(--blue-soft);
+}
+.note p:last-child{ margin-bottom:0; }
+.note .nt{
+  display:block;
+  font-family:"IBM Plex Sans",system-ui,sans-serif;
+  font-weight:600;
+  font-size:0.9rem;
+  color:var(--blue);
+  margin-bottom:0.25rem;
+}
+
+/* criterion block */
 .criterion{
   margin-top:1.3rem;
   border:1px solid var(--blue);
   background:var(--blue-soft);
 }
 .criterion .ctitle{
-  font-family:"IBM Plex Mono",monospace;
-  font-size:0.64rem;
-  letter-spacing:0.16em;
-  text-transform:uppercase;
+  font-family:"IBM Plex Sans",system-ui,sans-serif;
+  font-weight:600;
+  font-size:0.9rem;
   color:var(--on-blue);
   background:var(--blue);
-  padding:0.4rem 1.1rem;
+  padding:0.45rem 1.1rem;
 }
-.criterion .cbody{ padding:1rem 1.2rem 1.1rem; }
-.criterion ul{ list-style:none; margin:0.4rem 0 0; }
+.criterion .cbody{ padding:0.8rem 1.2rem 1rem; }
+.criterion ul{ list-style:none; }
 .criterion li{
-  font-size:0.9rem;
-  padding:0.5rem 0 0.5rem 1.5rem;
+  font-size:1rem;
+  padding:0.6rem 0 0.6rem 1.5rem;
   position:relative;
-  border-top:1px solid rgba(31,93,120,0.18);
+  border-top:1px solid var(--rule);
 }
 .criterion li:first-child{ border-top:none; }
 .criterion li::before{
   content:"›";
-  position:absolute;left:0.2rem;top:0.5rem;
+  position:absolute;left:0.2rem;top:0.6rem;
   color:var(--blue);
-  font-family:"IBM Plex Mono",monospace;
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
 }
 .criterion li .cap{
   display:block;
-  font-family:"IBM Plex Mono",monospace;
-  font-size:0.62rem;
-  letter-spacing:0.06em;
+  font-family:"IBM Plex Sans",system-ui,sans-serif;
+  font-weight:600;
+  font-size:0.86rem;
   color:var(--dim);
-  text-transform:uppercase;
-  margin-bottom:0.05rem;
+  margin-bottom:0.1rem;
+}
+.criterion li .new{ color:var(--rust); font-weight:500; }
+
+/* evidence list */
+.ev{ list-style:none; margin:0.6rem 0 1rem; }
+.ev li{
+  padding:0.7rem 0;
+  border-top:1px solid var(--rule);
+}
+.ev li:first-child{ border-top:none; }
+.ev .who{
+  display:block;
+  font-family:"IBM Plex Sans",system-ui,sans-serif;
+  font-weight:600;
+  font-size:0.95rem;
+  color:var(--ink);
 }
 
-/* ── footer ── */
+/* open items */
+ol.open{ margin:0.4rem 0 0 1.3rem; }
+ol.open li{ margin-bottom:0.6rem; padding-left:0.2rem; }
+
+/* references */
+ol.refs{ margin:0.4rem 0 0 1.6rem; }
+ol.refs li{
+  font-size:1rem;
+  margin-bottom:0.75rem;
+  padding-left:0.2rem;
+  overflow-wrap:anywhere;
+}
+.prov{
+  display:block;
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:0.72rem;
+  color:var(--faint);
+  margin-top:0.1rem;
+}
+
+/* revision log */
+.revlog p{ font-size:1rem; }
+
 footer{
   margin-top:3.2rem;
   padding-top:1rem;
   border-top:1px solid var(--ink);
-  font-family:"IBM Plex Mono",monospace;
-  font-size:0.62rem;
-  letter-spacing:0.07em;
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:0.72rem;
+  letter-spacing:0.05em;
   color:var(--faint);
   display:flex;
   justify-content:space-between;
@@ -246,8 +324,8 @@ footer{
   position:fixed;
   top:0.9rem;right:0.9rem;z-index:20;
   display:flex;align-items:center;gap:0.45rem;
-  font-family:"IBM Plex Mono",monospace;
-  font-size:0.6rem;letter-spacing:0.12em;
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:0.72rem;letter-spacing:0.08em;
   padding:0.42rem 0.62rem;
   color:var(--dim);
   background:var(--panel);
@@ -265,7 +343,7 @@ footer{
   @keyframes rise{ from{opacity:0;transform:translateY(8px);} to{opacity:1;transform:none;} }
 }
 @media (max-width:520px){
-  .wrap{ padding:2.4rem 1.1rem 3.5rem; }
+  .wrap{ padding:3.4rem 1.1rem 3.5rem; }
   .eq{ padding:0.5rem 0.9rem; }
   .eq .tag{ position:static; display:block; transform:none; text-align:right; margin-top:0.3rem; }
 }
@@ -281,13 +359,19 @@ footer{
   <h1>A Coexistence Criterion for Computation in Driven Disordered Optical Cavities</h1>
   <p class="subtitle">Why high modal dimensionality is necessary but not sufficient, and the conditions a substrate must meet simultaneously.</p>
   <div class="meta">
-    <span>STATUS — PRE-EXPERIMENTAL</span>
+    <span>STATUS — PRE-EXPERIMENTAL, WORK IN PROGRESS</span>
+    <span>REVISION 2 — 2026-10-04</span>
     <span>LICENSE — CC0 / PUBLIC DOMAIN</span>
     <span>FORM — SHORT NOTE</span>
   </div>
 
+  <div class="wip" role="note">
+    <strong>Work in progress.</strong> This note records a developing argument, not a finished result. Revision 2 narrows the scope of the linearity constraint, adds a sixth coexistence condition, and revises the noise condition in light of recent literature. Sections changed in this revision are marked, and unresolved points are collected in §7. No experiment has been run.
+  </div>
+
   <div class="abstract">
-    <p>A passive optical cavity filled with linear media implements a linear input–output map, however elaborate its engineered disorder. Such a map can be of arbitrarily high rank and still computes no nonlinear function of its input history. The conditions under which a driven, open, disordered cavity becomes a genuine computational substrate are therefore conditions on three coupled physical observables — dimensionality, memory, and a nonlinearity internal to the field evolution — that all enter through the same complex spectrum. This note states those conditions and reduces the computation question to a measurable criterion on the Volterra kernels of the input–output map.</p>
+    <p>A passive optical cavity filled with linear media, driven through its input field, implements a linear input–output map, however elaborate its engineered disorder. Such a map can be of arbitrarily high rank and still compute no nonlinear function of its input history. That statement holds only when the data enter as the drive. When the data instead modulate the cavity's scattering potential, multiple scattering produces a nonlinear map from data to output with purely linear optics.</p>
+    <p>The conditions under which a driven, open, disordered cavity becomes a genuine computational substrate are conditions on coupled physical observables — dimensionality, memory, a nonlinearity internal to the evolution, readout noise, and reproducibility — that all enter through the same complex spectrum. This note states those conditions and reduces the computation question to a measurable criterion on the Volterra kernels of the input–output map, with the input port declared.</p>
   </div>
 
   <section>
@@ -306,7 +390,7 @@ footer{
   </section>
 
   <section>
-    <div class="shead"><span class="snum">§ 2</span><h2>The linearity constraint</h2></div>
+    <div class="shead"><span class="snum">§ 2</span><h2>The linearity constraint and its scope</h2><span class="rev">revised in rev. 2</span></div>
     <p class="lead">For linear media, Eq. (1) is linear in \(\mathbf E\). The map from drive to field is therefore a linear operator \(A(\omega)\),</p>
     <div class="eq">
       <span class="tag">(3)</span>
@@ -322,11 +406,21 @@ footer{
       <span class="tag">(5)</span>
       \[ a_{m}(t)=\int_{0}^{\infty}\! G_{m}(t-t')\,s(t')\,dt'. \]
     </div>
-    <p>This is the constraint in one line: <strong>the internal state is a linear functional of the drive history.</strong> No matter how many modes participate or how complex \(A(\omega)\) is, the state never depends on products of its own past. A high-rank linear map is a random projection, not a dynamical system that computes.</p>
+    <p>This is the constraint in one line: <strong>when the data enter only through the drive \(s_m(t)\), the internal state is a linear functional of the drive history.</strong> No matter how many modes participate or how complex \(A(\omega)\) is, the state never depends on products of its own past. A high-rank linear map is a random projection, not a dynamical system that computes.</p>
+
+    <div class="note">
+      <span class="nt">Scope: the constraint is a statement about the input port</span>
+      <p>Eq. (5) assumes the data reach the cavity only through \(s_m(t)\). If the data instead modulate the scattering potential \(V\propto(\varepsilon-1)\) or the couplings \(\kappa_{mn}\) — a reconfigurable wall, a spatial light modulator acting as a mirror, an intracavity modulator — the field is still linear in \(\mathbf E_{\text{in}}\), but the map from data to output is not. Writing the response as a Born series in \(V\),</p>
+      <div class="eq">
+        <span class="tag">(5a)</span>
+        \[ \mathbf E_{\text{out}}=\left[V+V(G_0V)+V(G_0V)^2+\cdots\right]\mathbf E_{\text{in}}, \]
+      </div>
+      <p>each additional interaction with a data-dependent \(V\) adds one polynomial order in the data.<sup class="c"><a href="#r2">2</a></sup> This <em class="t">structural nonlinearity</em> has been demonstrated with CW light at low power in multiple-scattering cavities<sup class="c"><a href="#r1">1</a>,<a href="#r2">2</a></sup> and in a Fabry–Pérot cavity with one mirror replaced by a spatial light modulator.<sup class="c"><a href="#r3">3</a></sup> The linearity constraint above therefore applies to source-port encoding only.</p>
+    </div>
   </section>
 
   <section>
-    <div class="shead"><span class="snum">§ 3</span><h2>Three observables</h2></div>
+    <div class="shead"><span class="snum">§ 3</span><h2>Observables</h2><span class="rev">revised in rev. 2</span></div>
     <p class="lead"><strong>Dimensionality.</strong> Let \(M\) be the state matrix sampled by the readout, with singular values \(\sigma_i\). The effective dimensionality is the participation ratio of its singular spectrum,</p>
     <div class="eq">
       <span class="tag">(6)</span>
@@ -339,51 +433,125 @@ footer{
       \[ \delta=\frac{\bar\gamma}{\Delta\omega}, \]
     </div>
     <p>with \(\Delta\omega\) the mean level spacing. Resolved modes require \(\delta\lesssim1\); for \(\delta\gg1\) resonances overlap and individuality is lost.</p>
-    <p><strong>Nonlinearity.</strong> A genuine activation enters only through a field-dependent permittivity,</p>
+    <p><strong>Nonlinearity.</strong> An activation internal to the evolution can enter by two routes.</p>
+    <p><em class="t">(a) Field-dependent permittivity.</em> The intensity route,</p>
     <div class="eq">
       <span class="tag">(8)</span>
       \[ \varepsilon(\mathbf r)\;\to\;\varepsilon(\mathbf r)+\chi_{\text{eff}}\!\left(\mathbf r,|\mathbf E|^{2}\right), \]
     </div>
     <p>for example saturable gain \(\chi_{\text{eff}}=\chi_0\,(1+I/I_{\text{sat}})^{-1}\) or a Kerr shift \(\Delta n=n_2 I\). What matters is not only its magnitude but its response time relative to \(\tau_m\): a nonlinearity slow compared with the photon lifetime acts as a quasi-static background, not a per-symbol activation.</p>
+    <p><em class="t">(b) Data-dependent permittivity.</em> The structural route,</p>
+    <div class="eq">
+      <span class="tag">(8a)</span>
+      \[ \varepsilon(\mathbf r)\;\to\;\varepsilon(\mathbf r)+\Delta\varepsilon\!\left(\mathbf r;u(t)\right), \]
+    </div>
+    <p>needs no field buildup, so it is not limited by intensity. Its cost moves to the modulator, which must switch at a rate comparable to \(1/\tau_{\text{photon}}\) for the resulting nonlinearity to act per symbol rather than as a slowly reconfigured linear map. In this route the nonlinear order is set by the number of interactions with the modulated potential, which grows with photon lifetime: in a simulated two-dimensional scattering cavity, the coefficient of determination \(R^2\) of a linear fit falls steadily as wall reflectivity rises.<sup class="c"><a href="#r2">2</a></sup> The same spectrum \(\{\gamma_m\}\) that sets memory therefore also sets structural nonlinear order.</p>
   </section>
 
   <section>
-    <div class="shead"><span class="snum">§ 4</span><h2>The decisive criterion</h2></div>
+    <div class="shead"><span class="snum">§ 4</span><h2>The decisive criterion</h2><span class="rev">revised in rev. 2</span></div>
     <p class="lead">The computation question, free of any reservoir-computing vocabulary, is a statement about the Volterra expansion of the input–output map:</p>
     <div class="eq">
       <span class="tag">(9)</span>
       \[ y(t)=\sum_{k\ge1}\;\int\!\cdots\!\int h_{k}(\tau_1,\dots,\tau_k)\prod_{i=1}^{k}u(t-\tau_i)\,d\tau_i. \]
     </div>
-    <p>A linear system has only a first-order kernel — \(h_1=G\) and \(h_{k\ge2}\equiv0\). Nonlinearity in the state evolution appears as a <strong>nonvanishing higher-order kernel</strong>, and the physically meaningful requirement is that it be sourced by the intracavity field-dependence rather than by a nonlinear detector, with temporal support set by the photon lifetime:</p>
+    <p>A linear system has only a first-order kernel — \(h_1=G\) and \(h_{k\ge2}\equiv0\). Nonlinearity in the state evolution appears as a <strong>nonvanishing higher-order kernel</strong>, and the physically meaningful requirement is that it be sourced inside the cavity rather than by a nonlinear detector, with temporal support set by the photon lifetime:</p>
     <div class="eq key">
       <span class="tag">(10)</span>
       \[ h_{2}(\tau_1,\tau_2)\neq0,\qquad \operatorname{supp} h_2 \sim \tau_{\text{photon}}. \]
     </div>
-    <p>This collapses three fuzzy properties into one measurable quantity: drive the system with impulses and impulse pairs and read off whether \(h_2\) survives over the memory window.</p>
+    <p>This collapses several fuzzy properties into one measurable quantity: drive the system with impulses and impulse pairs and read off whether \(h_2\) survives over the memory window.</p>
+    <div class="note">
+      <span class="nt">The input port must be declared</span>
+      <p>Eq. (9) is incomplete until it states where \(u\) enters. With source-port encoding, \(h_2\neq0\) certifies route (a). With parameter-port encoding, multiple scattering alone generates \(h_2\neq0\), sourced inside the cavity with no \(\chi^{(3)}\). Either route satisfies (10) only if \(\operatorname{supp}h_2\sim\tau_{\text{photon}}\); for route (b) that requires modulation on the photon-lifetime timescale. Among the structural-nonlinearity demonstrations read for this revision, the maps are static or carry memory electronically: the one time-series forecasting result uses a digital leaky integrator for its reservoir state.<sup class="c"><a href="#r4">4</a></sup> None reviewed so far shows structural \(h_2\) with support on the photon-lifetime scale (see §7, item 1).</p>
+    </div>
+    <p>Existing structural-nonlinearity metrics are complementary to \(h_2\): the coefficient of determination of a linear fit and the mean number of interactions \(\langle n\rangle\),<sup class="c"><a href="#r3">3</a></sup> and the order-resolved Boolean coefficient sums \(S_n\) for binary inputs.<sup class="c"><a href="#r2">2</a></sup> None of them is time-resolved, which is what (10) adds.</p>
     <p>A nonvanishing \(h_2\) is a <strong>necessary</strong> criterion, not a sufficient one. A substrate can be nonlinear and still compute poorly if its memory capacity or readout conditioning is weak; the <strong>sufficient</strong> figure of merit is task-level — memory capacity, or accuracy on a benchmark that demands nonlinear memory (NARMA, parity-\(N\)) measured against a linear-readout control.</p>
   </section>
 
   <section>
-    <div class="shead"><span class="snum">§ 5</span><h2>The coexistence problem</h2></div>
-    <p class="lead">By <em class="t">coexistence</em> we mean the simultaneous satisfaction of the conditions below — not phase or modal coexistence, nor bistability. The difficulty is that the observables are not independent — disorder, loss, and the nonlinearity all enter through the same complex spectrum \(\{\omega_m-i\gamma_m\}\) and the same susceptibility. Disorder raises \(r_{\text{eff}}\) but adds radiative loss, which shortens memory and drives \(\delta\) past unity; a nonlinearity strong enough to make \(h_2\neq0\) — gain saturation near threshold, say — tends to induce mode competition that collapses the field onto a few modes and sends \(r_{\text{eff}}\to1\). The same non-Hermiticity exerts one further pull: the cavity's modes are non-orthogonal, and that non-orthogonality amplifies quantum-limited noise by the Petermann factor \(K\), which diverges near the exceptional points that strong mixing drives toward — so the high-\(r_{\text{eff}}\) regime is intrinsically the high-noise regime. The open question is whether a single operating point satisfies all of the following at once:</p>
+    <div class="shead"><span class="snum">§ 5</span><h2>The coexistence problem</h2><span class="rev">revised in rev. 2</span></div>
+    <p class="lead">By <em class="t">coexistence</em> we mean the simultaneous satisfaction of the conditions below — not phase or modal coexistence, nor bistability. The difficulty is that the observables are not independent: disorder, loss, gain and the nonlinearity all enter through the same complex spectrum \(\{\omega_m-i\gamma_m\}\) and the same susceptibility.</p>
+    <p><strong>Disorder against memory.</strong> Disorder raises \(r_{\text{eff}}\) but adds radiative loss, which shortens memory and drives \(\delta\) past unity. In the structural route the same loss also lowers the nonlinear order, since fewer round trips mean fewer interactions with the modulated potential.<sup class="c"><a href="#r2">2</a></sup></p>
+    <p><strong>Nonlinearity against dimensionality.</strong> A nonlinearity strong enough to make \(h_2\neq0\) — gain saturation near threshold, say — can induce mode competition that concentrates the field onto fewer modes and lowers \(r_{\text{eff}}\). Revision 1 stated this as generic collapse toward \(r_{\text{eff}}\to1\); that was too strong. In wave-chaotic and random resonators, semiclassical theory predicts that at sufficiently strong pumping the mean number of lasing peaks still grows with pump strength, as its 1/3 power.<sup class="c"><a href="#r9">9</a></sup> And disorder can work for dimensionality here: fragmenting transverse modes with random phase reduces their spatial overlap, which suppresses gain competition and lets more modes lase despite the lower Q.<sup class="c"><a href="#r7">7</a></sup></p>
+    <p><strong>Mixing against readout noise.</strong> Revision 1 attributed the noise cost of strong mixing to the Petermann factor \(K\) diverging near exceptional points. The recent sensing literature points to a more general mechanism. Near a fixed-point bifurcation, responsivity and long-time noise are both amplified by the inverse of the critical relaxation rate, so the amplification cancels from the signal-to-noise ratio; non-orthogonality of the linearized modes (a dynamical Petermann factor) adds noise on top rather than setting the scaling.<sup class="c"><a href="#r12">12</a></sup> This is consistent with the absence of a fundamental SNR gain at linear exceptional points<sup class="c"><a href="#r10">10</a></sup> and with noise constraints found for nonlinear ones.<sup class="c"><a href="#r11">11</a></sup> These results concern frequency-shift sensing in self-oscillators; their application to computation is by analogy (§7, item 4). The working statement is that critical slowing down is the dominant shared amplifier of signal and noise near any instability, and mode non-orthogonality is a secondary contribution.</p>
+    <p><strong>Gain against reproducibility.</strong> A substrate with gain must also return the same output for the same input history. In a numerical microcavity-laser reservoir, nonlinear memory capacity peaked near the onset of multimode lasing, at about 1.79 times threshold, and fell beyond it as spontaneous multimode oscillation made the output depend on the reservoir's initial state.<sup class="c"><a href="#r8">8</a></sup> The same study found that pumping extends memory beyond the passive \(1/\gamma_m\) by compensating loss. The regime that maximizes participation is therefore close to the regime that destroys consistency.</p>
+    <p>The open question is whether a single operating point satisfies all of the following at once:</p>
     <div class="criterion">
       <div class="ctitle">Simultaneous conditions — does such a regime exist?</div>
       <div class="cbody">
         <ul>
-          <li><span class="cap">Nonlinearity in the recurrence</span>\(h_2\neq0\), intracavity-sourced, with \(\operatorname{supp}h_2\sim\tau_{\text{photon}}\).</li>
+          <li><span class="cap">Nonlinearity in the recurrence</span>\(h_2\neq0\), sourced inside the cavity by route (a) or (b), input port declared, with \(\operatorname{supp}h_2\sim\tau_{\text{photon}}\).</li>
           <li><span class="cap">Dimensionality</span>\(r_{\text{eff}}=\mathcal O(N_{\text{modes}})\).</li>
-          <li><span class="cap">Memory matched to drive</span>spread\(\{\gamma_m\}\) comparable to the symbol rate.</li>
+          <li><span class="cap">Memory matched to drive</span>spread\(\{\gamma_m\}\) (net of any gain) comparable to the symbol rate.</li>
           <li><span class="cap">Modal individuality</span>\(\delta=\bar\gamma/\Delta\omega=\mathcal O(1)\).</li>
-          <li><span class="cap">Readout above the excess-noise floor</span>per-mode SNR degraded by \(\sqrt{K}\) (Petermann factor), worst exactly where mode mixing is strongest.</li>
+          <li><span class="cap">Readout above the noise floor</span>per-mode signal above noise where mixing is strongest, with critical slowing near any instability counted against both signal and noise, and mode non-orthogonality as an additional penalty.</li>
+          <li><span class="cap">Consistency <span class="new">(new in rev. 2)</span></span>the same input history yields the same output; no self-oscillation or multimode instability that depends on initial state.</li>
         </ul>
       </div>
     </div>
-    <p style="margin-top:1.2rem;">The linear-disorder half — the eigenfunction statistics and decay spectrum — is well-trodden open-wave-chaos physics. The unsettled half is the multimode nonlinear regime: whether a field-dependence strong enough to register in \(h_2\) on the photon-lifetime timescale can coexist with high modal participation, or whether it generically destroys it. Whether the favorable region is nonempty is the whole problem.</p>
+    <p style="margin-top:1.2rem;">The linear-disorder half — the eigenfunction statistics and decay spectrum — is well-trodden open-wave-chaos physics. The unsettled half is the multimode nonlinear regime: whether a nonlinearity strong enough to register in \(h_2\) on the photon-lifetime timescale can coexist with high modal participation and reproducible output. Whether the favorable region is nonempty remains the whole problem, and this revision does not settle it.</p>
+  </section>
+
+  <section>
+    <div class="shead"><span class="snum">§ 6</span><h2>Evidence reviewed in revision 2</h2><span class="rev">new in rev. 2</span></div>
+    <p class="lead">A pattern runs through the recent hardware results with nonlinearity built into the device: <strong>in each case the data enter through a pump or a parameter, not through the source term.</strong> That is the strongest practical reason for the port declaration in §4.</p>
+    <ul class="ev">
+      <li><span class="who">Integrated optical parametric oscillator reservoir<sup class="c"><a href="#r13">13</a></sup></span>The closest match to (10) found so far. A thin-film lithium niobate OPO runs at about 10 GHz; cavity feedback serves as the optical memory, and the parametric nonlinearity sits inside that recurrent loop, coupling each pump pulse to the previous signal pulse. Data modulate the pump. The authors report that the OPO output had lower SNR than the pump.</li>
+      <li><span class="who">Random network laser<sup class="c"><a href="#r6">6</a></sup></span>Mode competition between overlapping lasing modes provides both excitatory and inhibitory nonlinearity; the input is the spatial pump pattern. Shows that many modes and strong nonlinearity can coexist in a disordered gain medium, but the computation is a single-shot steady state under femtosecond pumping, with no temporal memory.</li>
+      <li><span class="who">Two-mode MEMS reservoir via blue-sideband excitation<sup class="c"><a href="#r14">14</a></sup></span>A mechanical analogue: one drive at \(f_1+f_2\) activates two modes into their nonlinear regime, with the data amplitude-modulating the pump. Dimensionality doubles; the two modal quality factors give two memory timescales. Memory was tested only on NARMA-1.</li>
+      <li><span class="who">Structural nonlinearity in multiple-scattering cavities<sup class="c"><a href="#r1">1</a>–<a href="#r3">3</a></sup></span>CW, low-power, tunable nonlinear order; kernel information capacity grows with structural nonlinearity, and parity up to fifth order was approximated.<sup class="c"><a href="#r2">2</a></sup> All static maps.</li>
+      <li><span class="who">Structural nonlinearity in a reservoir<sup class="c"><a href="#r4">4</a></sup></span>A second pass on a digital micromirror device gives a reservoir quadratic in the data, improving chaotic forecasting within about one Lyapunov time. Memory is a digital leaky integrator, not optical. A third-party automated review notes that the two compared arms also differ in diffuser, camera and loss; that critique is not yet checked (§7, item 3).</li>
+      <li><span class="who">Ensemble averaging against device noise<sup class="c"><a href="#r15">15</a></sup></span>Averaging over parallel physical systems to suppress noise. A possible way to pay for the high-noise, high-\(r_{\text{eff}}\) regime with hardware rather than by leaving it.</li>
+    </ul>
+    <div class="note">
+      <span class="nt">A practical caution for high-finesse cavities</span>
+      <p>Coherent speckle in cavity-based designs is sensitive to displacement, wavelength drift and thermal drift, which one group cites as the reason to avoid a cavity altogether.<sup class="c"><a href="#r4">4</a></sup> Another argues its globally paraxial Fabry–Pérot geometry is robust to absorption-induced thermal drift.<sup class="c"><a href="#r3">3</a></sup> The disagreement is unresolved, and it matters most for exactly the high-finesse disordered cavities this note considers.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="shead"><span class="snum">§ 7</span><h2>Open items</h2><span class="rev">work in progress</span></div>
+    <ol class="open">
+      <li><strong>Structural nonlinearity with optical memory.</strong> The one lead that may combine a linear optical microcavity with temporal tasks<sup class="c"><a href="#r5">5</a></sup> has been located and its citation verified, but it has not yet been read. Until it is, the claim in §4 that no reviewed result shows structural \(h_2\) on the photon-lifetime scale stands only for the sources listed here.</li>
+      <li><strong>Petermann statistics in chaotic open cavities.</strong> Whether the excess-noise factor in a disordered open cavity is better parameterized by modal overlap \(\delta\) than by proximity to exceptional points needs a source. No claim is made here until one is found.</li>
+      <li><strong>Confound in the structural reservoir comparison.</strong> Check whether the comparison in ref. 4 isolates the second modulator pass from the diffuser, camera and loss differences between its two arms.</li>
+      <li><strong>Transfer from sensing to computation.</strong> The noise argument in §5 rests on sensing results. A direct statement for reservoir readout near a bifurcation is still needed.</li>
+      <li><strong>Early-view citation.</strong> Ref. 2 has no volume or issue yet; recheck before any archival version.</li>
+    </ol>
+  </section>
+
+  <section>
+    <div class="shead"><span class="snum">§ 8</span><h2>References</h2></div>
+    <p style="font-size:1rem;color:var(--dim);">Every reference below passed a DOI or arXiv check against its title and authors before deployment. The source of that check is listed under each entry.</p>
+    <ol class="refs">
+      <li id="r1">F. Xia, K. Kim, Y. Eliezer, S. Han, L. Shaughnessy, S. Gigan and H. Cao, “Nonlinear optical encoding enabled by recurrent linear scattering,” <em>Nat. Photon.</em> <strong>18</strong>, 1067–1075 (2024). <a href="https://doi.org/10.1038/s41566-024-01493-0">doi:10.1038/s41566-024-01493-0</a><span class="prov">checked against publisher and PMC records</span></li>
+      <li id="r2">S. Han, F. Xia, S. Gigan, B. Loureiro and H. Cao, “Optical Kernel Machine With Programmable Nonlinearity,” <em>Laser Photonics Rev.</em> e03155 (2026), early view. <a href="https://doi.org/10.1002/lpor.202503155">doi:10.1002/lpor.202503155</a>; preprint <a href="https://arxiv.org/abs/2511.17880">arXiv:2511.17880</a><span class="prov">checked against publisher page and full preprint text</span></li>
+      <li id="r3">M. Facchin and S. Gigan, “Quantifying structural nonlinearity in a disordered Fabry-Pérot cavity,” <a href="https://arxiv.org/abs/2609.17030">arXiv:2609.17030</a> (2026).<span class="prov">checked against arXiv record</span></li>
+      <li id="r4">L. R. Venâncio, J. Dong, M. Mounaix and J. Bertolotti, “Optical Reservoir Computing with Structural Nonlinearity for Forecasting Chaotic Time Series,” <a href="https://arxiv.org/abs/2609.02733">arXiv:2609.02733</a> (2026).<span class="prov">checked against full text</span></li>
+      <li id="r5">M. You, K. Arai and S. Sunada, “Nonlinear time series computing using a linear optical microcavity,” <em>Opt. Express</em> <strong>33</strong>(12), 24982–24994 (2025). <a href="https://doi.org/10.1364/OE.559262">doi:10.1364/OE.559262</a><span class="prov">citation checked; not yet read (§7, item 1)</span></li>
+      <li id="r6">W. K. Ng, J. Dranczewski, A. Fischer, T. V. Raziman, D. Saxena, T. Farchy, K. Stenning, J. Peters, H. Schmid, W. R. Branford, M. Barahona, K. Moselund, R. Sapienza and J. C. Gartside, “Few-shot neuromorphic vision in a nonlinear photonic network laser,” <em>Sci. Adv.</em> <strong>12</strong>(36), eaec6546 (2026). <a href="https://doi.org/10.1126/sciadv.aec6546">doi:10.1126/sciadv.aec6546</a><span class="prov">checked against PMC full text</span></li>
+      <li id="r7">Y. Eliezer, S. Mahler, A. A. Friesem, H. Cao and N. Davidson, “Controlling Nonlinear Interaction in a Many-Mode Laser by Tuning Disorder,” <em>Phys. Rev. Lett.</em> <strong>128</strong>, 143901 (2022). <a href="https://doi.org/10.1103/PhysRevLett.128.143901">doi:10.1103/PhysRevLett.128.143901</a><span class="prov">checked against APS and ADS records</span></li>
+      <li id="r8">S. Sunada and A. Uchida, “Photonic reservoir computing based on nonlinear wave dynamics at microscale,” <em>Sci. Rep.</em> <strong>9</strong>, 19078 (2019). <a href="https://doi.org/10.1038/s41598-019-55247-y">doi:10.1038/s41598-019-55247-y</a> (numerical study)<span class="prov">checked against PMC record</span></li>
+      <li id="r9">G. Hackenbroich, “Statistical theory of multimode random lasers,” <em>J. Phys. A: Math. Gen.</em> <strong>38</strong>(49), 10537–10543 (2005). <a href="https://doi.org/10.1088/0305-4470/38/49/005">doi:10.1088/0305-4470/38/49/005</a><span class="prov">DOI resolved by author</span></li>
+      <li id="r10">H. Loughlin and V. Sudhir, “Exceptional-Point Sensors Offer No Fundamental Signal-to-Noise Ratio Enhancement,” <em>Phys. Rev. Lett.</em> <strong>132</strong>, 243601 (2024). <a href="https://doi.org/10.1103/PhysRevLett.132.243601">doi:10.1103/PhysRevLett.132.243601</a><span class="prov">DOI resolved by author; matches ref. 12's citation</span></li>
+      <li id="r11">X. Zheng and Y. D. Chong, “Noise Constraints for Nonlinear Exceptional Point Sensing,” <em>Phys. Rev. Lett.</em> <strong>134</strong>, 133801 (2025). <a href="https://doi.org/10.1103/PhysRevLett.134.133801">doi:10.1103/PhysRevLett.134.133801</a><span class="prov">DOI resolved; matches ref. 12's citation</span></li>
+      <li id="r12">X.-H. Yu and C.-F. Qiao, “Fixed-Point Bifurcations and Path-Information Bounds in Nonlinear Exceptional-Point Sensing,” <a href="https://arxiv.org/abs/2609.39046">arXiv:2609.39046</a> (2026).<span class="prov">checked against full text</span></li>
+      <li id="r13">M. Parto, G. H. Y. Li, R. Sekine, R. M. Gray, L. L. Ledezma, J. Williams, A. Roy and A. Marandi, “High-speed reservoir computing using photonic integrated circuit optical parametric oscillators,” <em>Sci. Adv.</em> <strong>12</strong>(38), eaeb3077 (2026). <a href="https://doi.org/10.1126/sciadv.aeb3077">doi:10.1126/sciadv.aeb3077</a><span class="prov">checked against PMC full text</span></li>
+      <li id="r14">Y. Li, Y. Qian, F. Chen, Y. Lian, X. Zou, K. Wang, Z. Wang, J. Wang, X. Wei, C. Li, K. M. Lei, W.-H. Yu, R. Guo, J. Xu, R. P. Martins, Y. Wang and P.-I. Mak, “Parallel reservoir computing exploiting a single MEMS device via blue sideband excitation,” <em>Microsyst. Nanoeng.</em> <strong>12</strong>, 316 (2026). <a href="https://doi.org/10.1038/s41378-026-01427-6">doi:10.1038/s41378-026-01427-6</a><span class="prov">checked against full text</span></li>
+      <li id="r15">Y. Nakamura, T. Kubota, Y. Imai, S. Tsunegi, H. Notsu and K. Nakajima, “Ensemble Reservoir Computing for Physical Systems,” <a href="https://arxiv.org/abs/2601.21807">arXiv:2601.21807</a> (2026).<span class="prov">checked against arXiv record by author</span></li>
+    </ol>
+  </section>
+
+  <section class="revlog">
+    <div class="shead"><span class="snum">§ 9</span><h2>Revision log</h2></div>
+    <p><strong>Revision 2 (2026-10-04).</strong> Scoped the linearity constraint to source-port encoding and added the structural route (Eqs. 5a, 8a). Required the input port to be declared in the Volterra criterion. Replaced the claim of generic mode-competition collapse with a weaker statement supported by refs. 7 and 9. Rewrote the noise condition around critical slowing down, with mode non-orthogonality as a secondary penalty. Added consistency as a sixth condition. Added §6 (evidence), §7 (open items) and §8 (references). Raised small type to legible sizes.</p>
+    <p><strong>Revision 1.</strong> Original note: five simultaneous conditions, no references.</p>
   </section>
 
   <footer>
     <span>NON-HERMITIAN · DISORDER · NONLINEAR DYNAMICS</span>
-    <span>CC0 — NO RIGHTS RESERVED</span>
+    <span>REV. 2 · WORK IN PROGRESS · CC0</span>
   </footer>
 
 </div>
