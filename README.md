@@ -1,18 +1,42 @@
-# A Coexistence Criterion for Computation in Driven Disordered Optical Cavities
+# Coexistence Conditions for Computation in Driven Disordered Optical Cavities
 
-**Status: work in progress, pre-experimental. Revision 2.1 (2026-10-04).**
+**Status: work in progress, pre-experimental. Revision 2.3.1 (2026-10-05). New material frozen until reference 5 (You, Arai & Sunada) has been read.**
 
-A short technical note on when a driven, open, disordered optical cavity can compute rather than merely project. It reduces the question to a measurable criterion on the higher-order Volterra kernels of the input–output map, and lists the physical conditions that have to hold at the same operating point. Whether that operating point exists is the open problem the note is built around; nothing here claims it does.
+A short technical note on when a driven, open, disordered optical cavity can compute rather than merely project. It proposes a measurable test for nonlinearity inside the cavity — a necessary condition only — and lists the further requirements that would have to hold at the same operating point. Whether that operating point exists is the open problem the note is built around; nothing here claims it does.
 
 The note is published as a single self-contained page: `index.html`.
 
 ## What the note argues
 
 1. **The linearity constraint has a scope.** A linear cavity driven through its input field computes no nonlinear function of the input history, however high the rank of its map. That holds only when the data enter as the drive. When the data modulate the cavity's scattering potential, multiple scattering yields a nonlinear map from data to output with linear optics (structural nonlinearity).
-2. **The criterion is a kernel, with the port declared.** Nonlinearity in the evolution shows up as the lowest nonvanishing kernel of order two or higher, sourced inside the cavity, with support on the photon-lifetime scale. Second order is the usual probe, but symmetry can forbid it (a Kerr cavity with phase-sensitive readout has no second-order term), so the criterion does not stop there. It must also say where the input enters. Detector nonlinearity alone caps the achievable order at two.
-3. **Six conditions must coexist:** nonlinearity in the recurrence, dimensionality, memory matched to the drive, modal individuality, readout above the noise floor, and consistency (same input history, same output). They are coupled through one complex spectrum, so improving one tends to cost another.
+2. **The kernel test, with the port and boundary declared.** Nonlinearity shows up as the lowest nonvanishing kernel of order two or higher, sourced inside a declared system boundary (input port to output field, before any detector), with support on the photon-lifetime scale. Second order is the usual probe, but symmetry can forbid it (a Kerr cavity with phase-sensitive readout has no second-order term), so the test does not stop there. It must also say where the input enters. Detector nonlinearity alone caps the achievable order at two, though passive reservoirs relying on it have still performed well on benchmark tasks. The test detects nonlinearity; it does not measure dimensionality, memory or task performance.
+3. **Requirements of different kinds must coexist:** three necessary conditions (nonlinearity in the recurrence, memory matched to the drive, consistency), one threshold (readout above the noise floor) and one figure of merit (dimensionality). Modal overlap is reported as a diagnostic only. The requirements are coupled through one complex spectrum, so improving one tends to cost another. The note shows tensions, not that the requirements cannot all be met — and not that they are a complete account of computation.
 
 ## Revision history
+
+**Revision 2.3.1 (2026-10-05)** — DOI pass
+- Resolved the DOIs for refs. 11 and 18 and the volume of ref. 17.
+- Reading ref. 18 in full corrected an error from rev. 2.3: its spoken-digit result was simulated; the experiments were Boolean tasks with memory and header recognition.
+
+**Revision 2.3 (2026-10-05)** — corrective, after external reviews by two AI instruments
+- Retitled from "A Coexistence Criterion" to "Coexistence Conditions".
+- Defined the system boundary, the memory scope (memory carried by the cavity field) and the time-invariance assumption; added a source term to Eq. (1).
+- Gave r_eff an operational, noise-thresholded definition; corrected the claim that nonlinear order grows with photon lifetime.
+- Renamed §4 "The kernel test", removed the claim that it collapses several properties into one, and added attribution controls.
+- Softened the detector-nonlinearity argument with a counter-example (Vandoorne et al. 2014), admitted as an exception to the freeze.
+- Labeled each requirement by kind, demoted modal overlap to a diagnostic, added a status-of-claims summary, and retitled §6 as a survey.
+
+**Revision 2.2.2 (2026-10-05)** — corrective
+- Audited every reference's provenance line. Several described search-result or third-party checks as primary-record checks; each now states who checked it and what was actually seen. No reference was found to be wrong.
+
+**Revision 2.2.1 (2026-10-05)** — corrective
+- Demoted the microwave scale-model section to an open item: it had entered the note as a full section before any thresholds were registered.
+- Froze the note pending a full reading of reference 5, on which the gap claim in §4 depends.
+- Both changes follow an internal review of epistemic drift across revisions 2 to 2.2.
+
+**Revision 2.2 (2026-10-05)**
+- Added a proposed microwave scale-model test as a section (demoted to an open item in 2.2.1).
+- Added del Hougne & Lerosey (Phys. Rev. X, 2018) and two open items.
 
 **Revision 2.1 (2026-10-04)**
 - Generalized the kernel criterion from second order to the lowest nonvanishing kernel of order two or higher, with a symmetry caveat.
@@ -41,11 +65,20 @@ These are unresolved in revision 2 and are listed in §7 of the note.
 3. Check whether the structural-reservoir comparison in Venâncio et al. (arXiv:2609.02733) isolates the second modulator pass from its other hardware differences.
 4. The noise argument rests on sensing results; a direct result for reservoir readout near a bifurcation is still needed.
 5. Han et al. (*Laser Photonics Rev.* e03155) is in early view; recheck volume and issue before any archival version.
-6. Write out how the criterion classifies extreme learning machines and delay-based reservoirs.
+6. Write out how the kernel test classifies extreme learning machines and delay-based reservoirs.
+7. The microwave scale-model test stays a proposal until numeric pass and kill thresholds are registered.
+8. Argue for a link between resolved modes and computational capacity, or drop modal overlap entirely.
+9. Build an evidence matrix (systems against requirements) from full texts only.
 
 ## Verification
 
-All 16 references passed the DOI gate before deployment: each DOI or arXiv identifier was resolved and matched to its claimed title and authors. The note lists the source of each check under the reference itself (publisher page, PMC record, arXiv record, full text, or author-resolved DOI). One reference (You et al.) is verified as a citation but not yet read, and the note says so where it is used.
+Each of the 18 references was matched to its title and authors before deployment. A matched citation is not verified content, so the note records, under every reference, who checked it (Nils, Claude, or another AI instrument) and what was actually seen:
+
+- **Full text read:** refs. 4, 12 and 14 (PDFs supplied by Nils), ref. 18 (publisher page) and the preprint of ref. 2.
+- **Record fetched or seen in search results:** most others. Where a claim in the note rests only on an abstract or excerpt (refs. 3, 8, 9, 15, 16), the line says so.
+- **Not read at all:** ref. 5. Its citation is verified; its content is not.
+
+An earlier version of these lines described several search-result checks as primary-record checks. That was corrected in revision 2.2.2.
 
 Checks were cross-run across several AI instruments and treated as readings, not authorities. Where instruments disagreed (one reported the DOI for Parto et al. as invalid), the disagreement was settled against the primary record (PMC13588183), not by majority.
 
