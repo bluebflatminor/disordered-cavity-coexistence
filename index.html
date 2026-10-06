@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="color-scheme" content="light dark" />
-<title>Coexistence Conditions for Computation in Driven Disordered Optical Cavities (rev. 2.3.1, work in progress)</title>
+<title>Coexistence Conditions for Computation in Driven Disordered Optical Cavities (rev. 2.3.2, work in progress)</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -360,13 +360,13 @@ footer{
   <p class="subtitle">Why high dimensionality is not enough, and the requirements a substrate would have to meet at the same operating point.</p>
   <div class="meta">
     <span>STATUS — PRE-EXPERIMENTAL, WORK IN PROGRESS</span>
-    <span>REVISION 2.3.1 — 2026-10-05 · NEW MATERIAL FROZEN PENDING REF. 5</span>
+    <span>REVISION 2.3.2 — 2026-10-05 · REVISION 3 IN PREPARATION</span>
     <span>LICENSE — CC0 / PUBLIC DOMAIN</span>
     <span>FORM — SHORT NOTE</span>
   </div>
 
   <div class="wip" role="note">
-    <strong>Work in progress.</strong> This note records a developing argument, not a finished result. Revision 2.3 makes corrections from two external reviews that do not depend on unread sources: it defines the system boundary and memory scope, renames the overclaiming “criterion,” separates the kinds of requirement, demotes modal overlap to a diagnostic, and adds a status-of-claims summary. <strong>New material remains frozen</strong> until reference 5 has been read, because the gap claim in §4 depends on it; the one exception is a counter-example that corrects an overstatement (§4). Sections changed are marked, and unresolved points are collected in §7. No experiment has been run.
+    <strong>Work in progress.</strong> This note records a developing argument, not a finished result. Revision 2.3 makes corrections from two external reviews that do not depend on unread sources: it defines the system boundary and memory scope, renames the overclaiming “criterion,” separates the kinds of requirement, demotes modal overlap to a diagnostic, and adds a status-of-claims summary. <strong>Reference 5 has now been read.</strong> It challenges two parts of this note: the attribution test in §4, and §5’s first requirement, nonlinearity in the recurrence as a necessary condition. The text of §4 and §5 has not yet been changed; revision 3 is in preparation. Sections changed are marked, and unresolved points are collected in §7. No experiment has been run.
   </div>
 
   <div class="abstract">
@@ -539,7 +539,7 @@ footer{
   <section>
     <div class="shead"><span class="snum">§ 7</span><h2>Open items</h2><span class="rev">work in progress</span></div>
     <ol class="open">
-      <li><strong>Structural nonlinearity with optical memory.</strong> The one lead that may combine a linear optical microcavity with temporal tasks<sup class="c"><a href="#r5">5</a></sup> has been located and its citation verified, but it has not yet been read. Until it is, the claim in §4 that no reviewed result shows a structural higher-order kernel on the photon-lifetime scale stands only for the sources listed here.</li>
+      <li><strong>Structural nonlinearity with optical memory (read; revision 3 in preparation).</strong> Ref. 5 has been read in full. Its nonlinearity comes from phase encoding at the modulator, outside this note’s system boundary, followed by a linear cavity and square-law detection, so it is not structural and the literal gap claim in §4 stands. But it reaches nonlinear capacity up to degree six with linear optical memory and no nonlinearity in the recurrence, which challenges §5’s first requirement as a necessary condition. It also shows that an instantaneous encoder followed by linear memory produces kernels spread over photon-lifetime delays, which undercuts the attribution test in §4 as written. Both are to be addressed in revision 3.</li>
       <li><strong>Petermann statistics in chaotic open cavities.</strong> Whether the excess-noise factor in a disordered open cavity is better parameterized by modal overlap \(\delta\) than by proximity to exceptional points needs a source. No claim is made here until one is found.</li>
       <li><strong>Confound in the structural reservoir comparison.</strong> Check whether the comparison in ref. 4 isolates the second modulator pass from the diffuser, camera and loss differences between its two arms.</li>
       <li><strong>Transfer from sensing to computation.</strong> The noise argument in §5 rests on sensing results. A direct statement for reservoir readout near a bifurcation is still needed.</li>
@@ -560,7 +560,7 @@ footer{
       <li id="r2">S. Han, F. Xia, S. Gigan, B. Loureiro and H. Cao, “Optical Kernel Machine With Programmable Nonlinearity,” <em>Laser Photonics Rev.</em> e03155 (2026), early view. <a href="https://doi.org/10.1002/lpor.202503155">doi:10.1002/lpor.202503155</a>; preprint <a href="https://arxiv.org/abs/2511.17880">arXiv:2511.17880</a><span class="prov">Journal details pasted by Nils from the publisher page. Preprint text read by Claude.</span></li>
       <li id="r3">M. Facchin and S. Gigan, “Quantifying structural nonlinearity in a disordered Fabry-Pérot cavity,” <a href="https://arxiv.org/abs/2609.17030">arXiv:2609.17030</a> (2026).<span class="prov">arXiv listing seen by Claude in search results; citation confirmed by Nils. Claims in this note rest on the abstract only.</span></li>
       <li id="r4">L. R. Venâncio, J. Dong, M. Mounaix and J. Bertolotti, “Optical Reservoir Computing with Structural Nonlinearity for Forecasting Chaotic Time Series,” <a href="https://arxiv.org/abs/2609.02733">arXiv:2609.02733</a> (2026).<span class="prov">Full text read (PDF supplied by Nils).</span></li>
-      <li id="r5">M. You, K. Arai and S. Sunada, “Nonlinear time series computing using a linear optical microcavity,” <em>Opt. Express</em> <strong>33</strong>(12), 24982–24994 (2025). <a href="https://doi.org/10.1364/OE.559262">doi:10.1364/OE.559262</a><span class="prov">Citation resolved by Nils; matches an independent reference list seen by Claude. Not yet read (§7, item 1).</span></li>
+      <li id="r5">M. You, K. Arai and S. Sunada, “Nonlinear time series computing using a linear optical microcavity,” <em>Opt. Express</em> <strong>33</strong>(12), 24982–24994 (2025). <a href="https://doi.org/10.1364/OE.559262">doi:10.1364/OE.559262</a><span class="prov">Read in full (PDF supplied by Nils). Citation resolved by Nils.</span></li>
       <li id="r6">W. K. Ng, J. Dranczewski, A. Fischer, T. V. Raziman, D. Saxena, T. Farchy, K. Stenning, J. Peters, H. Schmid, W. R. Branford, M. Barahona, K. Moselund, R. Sapienza and J. C. Gartside, “Few-shot neuromorphic vision in a nonlinear photonic network laser,” <em>Sci. Adv.</em> <strong>12</strong>(36), eaec6546 (2026). <a href="https://doi.org/10.1126/sciadv.aec6546">doi:10.1126/sciadv.aec6546</a><span class="prov">PMC record fetched by Claude: front matter and part of the text.</span></li>
       <li id="r7">Y. Eliezer, S. Mahler, A. A. Friesem, H. Cao and N. Davidson, “Controlling Nonlinear Interaction in a Many-Mode Laser by Tuning Disorder,” <em>Phys. Rev. Lett.</em> <strong>128</strong>, 143901 (2022). <a href="https://doi.org/10.1103/PhysRevLett.128.143901">doi:10.1103/PhysRevLett.128.143901</a><span class="prov">APS and ADS listings seen by Claude in search results. DOI not resolved directly.</span></li>
       <li id="r8">S. Sunada and A. Uchida, “Photonic reservoir computing based on nonlinear wave dynamics at microscale,” <em>Sci. Rep.</em> <strong>9</strong>, 19078 (2019). <a href="https://doi.org/10.1038/s41598-019-55247-y">doi:10.1038/s41598-019-55247-y</a> (numerical study)<span class="prov">PMC listing seen by Claude in search results. Claims in this note rest on an excerpt of the preprint, not a full read.</span></li>
@@ -579,6 +579,7 @@ footer{
 
   <section class="revlog">
     <div class="shead"><span class="snum">§ 9</span><h2>Revision log</h2></div>
+    <p><strong>Revision 2.3.2 (2026-10-05).</strong> Status update only. Ref. 5 has been read in full; the banner, open item 1 and its provenance line now say so, and record that it challenges the attribution test in §4 and the first requirement in §5. The body text is unchanged pending revision 3.</p>
     <p><strong>Revision 2.3.1 (2026-10-05).</strong> DOI pass. Resolved the DOIs for refs. 11 and 18 and the volume of ref. 17. Reading ref. 18 in full corrected an error introduced in rev. 2.3: its spoken-digit result was a simulation; the experiments were Boolean tasks with memory and header recognition. The §4 text now says so.</p>
     <p><strong>Revision 2.3 (2026-10-05).</strong> Corrective, after external reviews by two AI instruments. Retitled from “A Coexistence Criterion” to “Coexistence Conditions.” Added a source term to Eq. (1); defined the system boundary, the memory scope and the time-invariance assumption (§1). Gave \(r_{\text{eff}}\) an operational, noise-thresholded definition. Corrected “nonlinear order grows with lifetime” to a statement about the weight of higher-order terms. Renamed §4 “The kernel test,” removed the claim that it collapses several properties into one, and added attribution controls. Softened the detector-nonlinearity argument with a counter-example (ref. 18, admitted as an exception to the freeze). Labeled each requirement by kind, demoted modal overlap to a diagnostic, and added a status-of-claims summary. Retitled §6 as a survey. Two open items added.</p>
     <p><strong>Revision 2.2.2 (2026-10-05).</strong> Corrective. Audited every reference’s provenance line. Several had described search-result or third-party checks as primary-record checks; each now states who checked it and what was actually seen. Ref. 11’s DOI had been resolved only by another AI instrument. No reference was found to be wrong.</p>
@@ -591,7 +592,7 @@ footer{
 
   <footer>
     <span>NON-HERMITIAN · DISORDER · NONLINEAR DYNAMICS</span>
-    <span>REV. 2.3.1 · NEW MATERIAL FROZEN PENDING REF. 5 · CC0</span>
+    <span>REV. 2.3.2 · REVISION 3 IN PREPARATION · CC0</span>
   </footer>
 
 </div>
