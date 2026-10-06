@@ -1,6 +1,6 @@
 # Coexistence Conditions for Computation in Driven Disordered Optical Cavities
 
-**Status: work in progress, pre-experimental. Revision 2.3.1 (2026-10-05). New material frozen until reference 5 (You, Arai & Sunada) has been read.**
+**Status: work in progress, pre-experimental. Revision 2.3.2 (2026-10-05). Reference 5 (You, Arai & Sunada) has now been read; it challenges the attribution test in §4 and §5's first requirement. Revision 3 is in preparation.**
 
 A short technical note on when a driven, open, disordered optical cavity can compute rather than merely project. It proposes a measurable test for nonlinearity inside the cavity — a necessary condition only — and lists the further requirements that would have to hold at the same operating point. Whether that operating point exists is the open problem the note is built around; nothing here claims it does.
 
@@ -13,6 +13,9 @@ The note is published as a single self-contained page: `index.html`.
 3. **Requirements of different kinds must coexist:** three necessary conditions (nonlinearity in the recurrence, memory matched to the drive, consistency), one threshold (readout above the noise floor) and one figure of merit (dimensionality). Modal overlap is reported as a diagnostic only. The requirements are coupled through one complex spectrum, so improving one tends to cost another. The note shows tensions, not that the requirements cannot all be met — and not that they are a complete account of computation.
 
 ## Revision history
+
+**Revision 2.3.2 (2026-10-05)** — status update
+- Reference 5 read in full. It reaches high-order nonlinear capacity with linear optical memory and no nonlinearity in the recurrence, which challenges §5's first requirement as a necessary condition and the attribution test in §4. Body text unchanged pending revision 3.
 
 **Revision 2.3.1 (2026-10-05)** — DOI pass
 - Resolved the DOIs for refs. 11 and 18 and the volume of ref. 17.
@@ -60,7 +63,7 @@ The note is published as a single self-contained page: `index.html`.
 
 These are unresolved in revision 2 and are listed in §7 of the note.
 
-1. Read You, Arai and Sunada (*Opt. Express* 33, 24982, 2025), the one located lead that may combine structural nonlinearity with optical memory.
+1. Revise §4 and §5 in light of You, Arai and Sunada (*Opt. Express* 33, 24982, 2025), now read: its nonlinearity is encoder-side, not structural, but it computes without nonlinearity in the recurrence.
 2. Find a source for Petermann-factor statistics in chaotic open cavities before making any claim about how they scale with modal overlap.
 3. Check whether the structural-reservoir comparison in Venâncio et al. (arXiv:2609.02733) isolates the second modulator pass from its other hardware differences.
 4. The noise argument rests on sensing results; a direct result for reservoir readout near a bifurcation is still needed.
@@ -74,9 +77,8 @@ These are unresolved in revision 2 and are listed in §7 of the note.
 
 Each of the 18 references was matched to its title and authors before deployment. A matched citation is not verified content, so the note records, under every reference, who checked it (Nils, Claude, or another AI instrument) and what was actually seen:
 
-- **Full text read:** refs. 4, 12 and 14 (PDFs supplied by Nils), ref. 18 (publisher page) and the preprint of ref. 2.
+- **Full text read:** refs. 4, 5, 12 and 14 (PDFs supplied by Nils), ref. 18 (publisher page) and the preprint of ref. 2.
 - **Record fetched or seen in search results:** most others. Where a claim in the note rests only on an abstract or excerpt (refs. 3, 8, 9, 15, 16), the line says so.
-- **Not read at all:** ref. 5. Its citation is verified; its content is not.
 
 An earlier version of these lines described several search-result checks as primary-record checks. That was corrected in revision 2.2.2.
 
